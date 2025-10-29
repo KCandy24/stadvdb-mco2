@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <title>Wondershow</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Wondershow</a></li>
+                {% if not session.name %}
+                <li><a href="/login">Login</a></li>
+                <li><a href="/sign-up">Sign-Up</a></li>
+                {% endif %}
+                {% if session.name %}
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/api/auth/logout">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <p>
+            {% if error %}
+            Error: {{ error }}
+            {% endif %}
+        </p>
+        <p>
+            {% if session.name %}
+            You are logged in as {{ session.name }}.
+            {% else %}
+            You are not logged in.
+            {% endif %}
+        </p>
+    </header>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+    <footer>
+        <p>Made by The Fantastic Froggers for STADVDB</p>
+    </footer>
+</body>
+
+</html>

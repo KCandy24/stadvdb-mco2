@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Search</h1>
+<p>Search type: {{search_type}}</p>
+<ul>
+    <!-- search_type is either `play` or `theater` -->
+    <!-- element is either a `play` or a `theater` -->
+    {% for element in elements %}
+    <li><a href="showings?{{search_type}}={{element}}">{{element}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

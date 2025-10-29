@@ -1,2 +1,13 @@
 # stadvdb-mco2
+
 Movie seat reservation web application with both transactional and analytical operations. 
+
+## To run the program,
+
+1. Ensure that you have `uv` installed.
+2. Run `uv sync`.
+3. Run `uv run flask --app app run --debug`. (Convenience scripts `run.bat` and `run.sh` are provided for this, too.)
+
+---
+
+* [Miro Board](https://miro.com/app/board/uXjVJzaYJww=/?share_link_id=497166717995)

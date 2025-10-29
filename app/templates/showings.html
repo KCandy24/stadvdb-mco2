@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Showings</h1>
+<table>
+    <tr>
+        <th>Play</th>
+        <th>Theater</th>
+    </tr>
+    {% for showing in showings %}
+    <tr>
+        <td>{{showing.play}}</td>
+        <td>{{showing.theater}}</td>
+        <td><button><a href="reserve?play={{showing.play}}&theater={{showing.theater}}">Reserve</a></button></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

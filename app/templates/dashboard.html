@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body %}
+<!-- TODO: Was envisioning this as a user dashboard that showed which -->
+<!-- TODO: reservations have been made. -->
+<h1>Dashboard</h1>
+Current reservations
+<table>
+    <tr>
+        <th>Play</th>
+        <th>Theater</th>
+        <th>Seats</th>
+    </tr>
+    {% for reservation in session.reservations %}
+    <tr>
+        <td>{{reservation.play}}</td>
+        <td>{{reservation.theater}}</td>
+        <td>{{reservation.seats}}</td>
+        <td>
+            <form action="/api/unreserve" method="post">
+                <input type="hidden" name="play" value="{{reservation.play}}">
+                <input type="hidden" name="theater" value="{{reservation.theater}}">
+                <input type="hidden" name="seats" value="{{reservation.seats}}">
+                <button type="submit">Unreserve</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

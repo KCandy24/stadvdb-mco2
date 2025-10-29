@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Sign-Up</h1>
+<form action="/api/auth/sign-up" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username">
+    <label for="password">Password</label>
+    <input type="password" name="password">
+    <button type="submit" class="form-page-submit">Submit</button>
+</form>
+{% endblock %}

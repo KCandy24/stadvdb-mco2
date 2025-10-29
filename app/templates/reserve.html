@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Reserve</h1>
+<p>
+    You are about to reserve a showing of <em>{{play}}</em> at
+    <em>{{theater}}</em>.
+</p>
+<p>
+    Please select which seats to reserve:
+</p>
+
+<div class="seat-layout">
+    {% for row in layout %}
+    <div class="seat-row">
+        {% set outer_loop = loop %}
+        {% for col in row %}
+        {% if col == "1" %}
+        <button class="seat" data-seat="{{outer_loop.index0}}-{{loop.index0}}">🪑</button>
+        {% elif col == "0" %}
+        <button disabled class="seat">🪑</button>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+<form action="/api/reserve" method="post">
+    <input type="hidden" name="play" value="{{play}}">
+    <input type="hidden" name="theater" value="{{theater}}">
+    <input type="hidden" name="seats" value="">
+    <button type="submit">Proceed</button>
+</form>
+{% endblock %}
