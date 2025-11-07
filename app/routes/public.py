@@ -3,6 +3,7 @@ These routes are accessible to the public, i.e. even when not logged in.
 """
 from flask import Blueprint, render_template, session, request
 from app.routes.dummy_data import PLAYS, THEATERS, SHOWINGS
+from app.db import get_db
 
 bp = Blueprint("pages", __name__)
 
@@ -63,4 +64,11 @@ def showings():
         theater=theater,
         showings=filtered_showings,
     )
-
+    
+@bp.route("/db-test")
+def db_test():
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("SELECT 1;")
+    result = cur.fetchone()
+    return {"db_response": result[0]}
