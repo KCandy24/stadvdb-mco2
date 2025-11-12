@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS transactional.showing(
     basefee NUMERIC(10, 2),
     reservation_period_start TIMESTAMP,
     reservation_period_end TIMESTAMP,
-    showing_date TIMESTAMP
+    showing_date TIMESTAMP,
 
     CONSTRAINT fk_play
         FOREIGN KEY(play_id)
