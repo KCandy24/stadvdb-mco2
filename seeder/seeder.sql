@@ -110,7 +110,7 @@ INSERT INTO play (play_name, play_duration_min) VALUES
 
 INSERT INTO theater (theater_name, "location") VALUES
 ('The Grand Stage', 'New York'),
-('West End Playhouse', 'London');
+('West End Playhouse', 'London'),
 ('The Royal Court', 'Paris'),
 ('The Odeon', 'Tokyo'),
 ('The Lyric Opera', 'Chicago');

@@ -43,6 +43,20 @@ CREATE TABLE IF NOT EXISTS transactional.showing(
         ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS transactional.run (
+    run_id SERIAL PRIMARY KEY,
+    showing_id INT,
+    run_start_time TIMESTAMP NOT NULL,
+    run_end_time TIMESTAMP  NOT NULL,
+
+    CONSTRAINT fk_showing
+        FOREIGN KEY(showing_id) 
+        REFERENCES transactional.showing(showing_id)
+        ON DELETE CASCADE,
+
+    UNIQUE(run_id, showing_id)
+);
+
 CREATE TABLE IF NOT EXISTS transactional.seat(
     seat_id SERIAL PRIMARY KEY,
     theater_id INT,
@@ -62,7 +76,7 @@ CREATE TABLE IF NOT EXISTS transactional.reservation (
     reservation_id SERIAL PRIMARY KEY,
     user_id INT,
     seat_id INT,
-    showing_id INT,
+    run_id INT,
     time_reserved TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status reservation_status,
 
@@ -70,10 +84,10 @@ CREATE TABLE IF NOT EXISTS transactional.reservation (
         FOREIGN KEY(user_id) 
         REFERENCES transactional.user(user_id)
         ON DELETE SET NULL,
-    
-    CONSTRAINT fk_showing
-        FOREIGN KEY(showing_id)
-        REFERENCES transactional.showing(showing_id)
+
+    CONSTRAINT fk_run
+        FOREIGN KEY(run_id)
+        REFERENCES transactional.run(run_id)
         ON DELETE SET NULL,
         
     CONSTRAINT fk_seat
@@ -81,5 +95,5 @@ CREATE TABLE IF NOT EXISTS transactional.reservation (
         REFERENCES transactional.seat(seat_id)
         ON DELETE SET NULL,
         
-    UNIQUE(seat_id, showing_id)
+    UNIQUE(seat_id, run_id)
 );
