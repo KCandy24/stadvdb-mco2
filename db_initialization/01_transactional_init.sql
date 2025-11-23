@@ -1,20 +1,17 @@
 CREATE SCHEMA IF NOT EXISTS transactional;
 
-CREATE TYPE reservation_status AS ENUM ('Confirmed', 'Completed', 'Cancelled-User', 'Cancelled-Event');
-
-CREATE TABLE IF NOT EXISTS transactional.user (
+CREATE TABLE IF NOT EXISTS transactional.users (
     user_id SERIAL PRIMARY KEY,
     lastname VARCHAR(50),
     firstname VARCHAR(50),
-    birthday TIMESTAMP,
+    birthday DATE,
     email VARCHAR(200) UNIQUE NOT NULL,
     password VARCHAR(200) NOT NULL  --  needs to be hashed
 );
 
 CREATE TABLE IF NOT EXISTS transactional.play(
     play_id SERIAL PRIMARY KEY,
-    play_name VARCHAR(50),
-    play_duration_min INT
+    play_name VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS transactional.theater(
@@ -29,7 +26,7 @@ CREATE TABLE IF NOT EXISTS transactional.showing(
     theater_id INT,
     basefee NUMERIC(10, 2),
     reservation_period_start TIMESTAMP,
-    reservation_period_end TIMESTAMP
+    reservation_period_end TIMESTAMP,
 
     CONSTRAINT fk_play
         FOREIGN KEY(play_id)
@@ -77,11 +74,10 @@ CREATE TABLE IF NOT EXISTS transactional.reservation (
     seat_id INT,
     run_id INT,
     time_reserved TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status reservation_status,
 
     CONSTRAINT fk_user
         FOREIGN KEY(user_id) 
-        REFERENCES transactional.user(user_id)
+        REFERENCES transactional.users(user_id)
         ON DELETE SET NULL,
 
     CONSTRAINT fk_run
