@@ -4,25 +4,42 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - db
+      - transactional_db
+      - analytical_db
     environment:
       FLASK_ENV: development
-      DB_URL: postgres://postgres:postgres@db:5432/appdb
+      DB_URL: postgres://postgres:postgres@transactional_db:5432/appdb_transactional
+      DB2_URL: postgres://postgres:postgres@analytical_db:5432/appdb_analytical
     volumes:
       - .:/app
+      - /app/.venv
 
-  db:
+  transactional_db:
     image: postgres:15
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: appdb
+      POSTGRES_DB: appdb_transactional
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./db_initialization:/docker-entrypoint-initdb.d
+      - pgdata_transactional:/var/lib/postgresql/data
+      - ./transactional_db_initialization:/docker-entrypoint-initdb.d
+
+  analytical_db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: appdb_analytical
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata_analytical:/var/lib/postgresql/data
+      - ./analytical_db_initialization:/docker-entrypoint-initdb.d
 
 volumes:
-  pgdata:
+  pgdata_transactional:
+  pgdata_analytical:
