@@ -27,6 +27,12 @@ services:
       - pgdata_transactional:/var/lib/postgresql/data
       - ./transactional_db_initialization:/docker-entrypoint-initdb.d
 
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres -d appdb_transactional"]
+        interval: 5s
+        timeout: 5s
+        retries: 5
+
   analytical_db:
     image: postgres:15
     restart: always
@@ -39,6 +45,10 @@ services:
     volumes:
       - pgdata_analytical:/var/lib/postgresql/data
       - ./analytical_db_initialization:/docker-entrypoint-initdb.d
+
+    depends_on:
+      transactional_db:
+        condition: service_healthy
 
 volumes:
   pgdata_transactional:
