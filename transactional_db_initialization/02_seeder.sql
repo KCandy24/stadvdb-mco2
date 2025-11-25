@@ -136,6 +136,19 @@ BEGIN
         (s_showing_id,'2026-1-3 19:25:00','2026-1-3 21:25:00'),
         (s_showing_id,'2026-1-5 19:25:00','2026-1-5 21:25:00'),
         (s_showing_id,'2026-1-7 19:25:00','2026-1-7 21:25:00');
+
+    SELECT play_id INTO s_play_id FROM transactional.play WHERE play_name = 'The Lion King';
+    SELECT theater_id INTO s_theater_id FROM transactional.theater WHERE theater_name = 'DLSU Ampitheatre';
+
+    INSERT INTO transactional.showing (play_id, theater_id, basefee, reservation_period_start, reservation_period_end)
+    VALUES (s_play_id, s_theater_id, 200.00, '2025-10-20 19:25:00', '2025-10-30 19:25:00')
+    RETURNING showing_id INTO s_showing_id;
+
+    INSERT INTO transactional.run (showing_id, run_start_time, run_end_time)
+        VALUES 
+        (s_showing_id,'2025-11-1 17:30:00','2025-1-1 19:30:00'),
+        (s_showing_id,'2025-11-2 17:30:00','2025-1-2 19:30:00'),
+        (s_showing_id,'2025-11-3 17:30:00','2025-1-3 19:30:00');
 END $$;
 
 -- RESERVATIONS
