@@ -18,4 +18,4 @@ flask_session/
 
 # PostgreSQL backups and WAL archives
 pg_basebackups/
-postgres_wal/wal_archive/
+postgres_wal/wal_archive_local/

@@ -15,9 +15,11 @@ services:
       - /app/.venv
 
   transactional_db:
-    image: postgres:15
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
     restart: always
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf -c hba_file=/var/lib/postgresql/data/pg_hba.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf -c hba_file=/etc/postgresql/pg_hba.conf
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -28,7 +30,8 @@ services:
       - pgdata_transactional:/var/lib/postgresql/data
       - ./transactional_db_initialization:/docker-entrypoint-initdb.d
       - ./postgres_wal/archiving.conf:/etc/postgresql/postgresql.conf:ro
-      - ./postgres_wal/wal_archive:/var/lib/postgresql/wal_archive
+      - ./postgres_wal/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+      - wal_archive_volume:/var/lib/postgresql/wal_archive
 
     healthcheck:
         test: ["CMD-SHELL", "pg_isready -U postgres -d appdb_transactional"]
@@ -56,21 +59,48 @@ services:
   backup:
     image: postgres:15
     depends_on:
-      - transactional_db
+      transactional_db:
+        condition: service_healthy
     entrypoint: ["/bin/bash", "-c"]
     command: >
       "until pg_isready -h transactional_db -U postgres; do
         echo 'Waiting for transactional_db...';
         sleep 2;
       done;
-      sleep 5;
+      echo 'Database is ready, waiting for replicator role...';
+      sleep 10;
+      until PGPASSWORD=replicator_password psql -h transactional_db -U replicator -d postgres -c 'SELECT 1' 2>/dev/null; do
+        echo 'Waiting for replicator role to be created...';
+        sleep 5;
+      done;
       echo 'Starting base backup';
       PGPASSWORD=replicator_password pg_basebackup -h transactional_db -U replicator -D /backup/backup_$(date +%Y%m%d_%H%M%S) -Ft -z -P -v;
       echo 'Backup completed';"
     volumes:
       - ./pg_basebackups:/backup
-      - ./postgres_wal/wal_archive:/var/lib/postgresql/wal_archive:ro
+      - wal_archive_volume:/var/lib/postgresql/wal_archive:ro
+
+  wal_sync:
+    image: postgres:15
+    restart: always
+    depends_on:
+      transactional_db:
+        condition: service_healthy
+    entrypoint: ["/bin/bash", "-c"]
+    command: >
+      "echo 'WAL sync service started';
+      while true; do
+        echo 'Syncing WAL files to local directory...';
+        cp -rn /var/lib/postgresql/wal_archive/* /backup/ 2>/dev/null || true;
+        file_count=$(ls -1 /backup 2>/dev/null | wc -l);
+        echo \"Currently synced: $file_count WAL files\";
+        sleep 30;
+      done"
+    volumes:
+      - wal_archive_volume:/var/lib/postgresql/wal_archive:ro
+      - ./postgres_wal/wal_archive_local:/backup
 
 volumes:
   pgdata_transactional:
   pgdata_analytical:
+  wal_archive_volume:
