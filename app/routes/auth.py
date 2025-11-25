@@ -13,6 +13,10 @@ def login():
     # TODO: Connect to database and check if valid user and password.
 
     session["name"] = name
+    if name == "user":
+        session["type"] = "user"
+    elif name == "admin":
+        session["type"] = "admin"
     return redirect("/dashboard")
 
 @bp.post("/sign-up")

@@ -5,7 +5,7 @@ These routes are inaccessible when the user isn't logged in.
 from flask import Blueprint, render_template, session, redirect, request
 from app.routes.dummy_data import SEAT_LAYOUTS
 
-bp = Blueprint("gated", __name__)
+bp = Blueprint("gated_user", __name__)
 
 
 @bp.before_request

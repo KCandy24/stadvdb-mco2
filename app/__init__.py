@@ -14,11 +14,12 @@ def create_app() -> Flask:
     app.config["SESSION_TYPE"] = "filesystem"
     Session(app)
 
-    from .routes import auth, public, gated
+    from .routes import auth, public, gated_user, gated_admin
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(public.bp)
-    app.register_blueprint(gated.bp)
+    app.register_blueprint(gated_admin.bp)
+    app.register_blueprint(gated_user.bp)
     app.teardown_appcontext(close_db)
     print("Blueprints loaded:", app.blueprints)
 
