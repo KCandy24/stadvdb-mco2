@@ -8,8 +8,8 @@ services:
       - analytical_db
     environment:
       FLASK_ENV: development
-      DB_URL: postgres://postgres:postgres@transactional_db:5432/appdb_transactional
-      DB2_URL: postgres://postgres:postgres@analytical_db:5432/appdb_analytical
+      DB_URL: postgresql://postgres:postgres@transactional_db:5432/appdb_transactional
+      DB2_URL: postgresql://postgres:postgres@analytical_db:5432/appdb_analytical
     volumes:
       - .:/app
       - /app/.venv

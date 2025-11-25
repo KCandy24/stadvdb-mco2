@@ -19,7 +19,11 @@
                 <li><a href="/sign-up">Sign-Up</a></li>
                 {% endif %}
                 {% if session.name %}
+                {% if session.name == "admin" %}
+                <li><a href="/admin/dashboard">Admin Dashboard</a></li>
+                {% else %}
                 <li><a href="/dashboard">Dashboard</a></li>
+                {% endif %}
                 <li><a href="/api/auth/logout">Logout</a></li>
                 {% endif %}
             </ul>

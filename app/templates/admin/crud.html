@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>{{table_name}}</h2>
+
+<h3>Create</h3>
+
+<form action="">
+    {% for column in columns %}
+    <label for="{{column}}">{{column}}</label>
+    <input type="text" name="{{column}}">
+    {% endfor %}
+    <button type="submit" class="form-page-submit">Create</button>
+</form>
+
+<hr>
+
+<h3>Read</h3>
+
+<table>
+    <tr>
+        {% for column in columns %}
+        <th>{{column}}</th>
+        {% endfor %}
+        <th></th>
+        <th></th>
+    </tr>
+    {% for row in rows %}
+    <tr>
+        {% for val in row %}
+        <td>{{val}}</td>
+        {% endfor %}
+        <td><button>Update</button></td>
+        <td><button>Delete</button></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

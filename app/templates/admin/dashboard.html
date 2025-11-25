@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Admin Dashboard</h1>
+
+<h2>Tables</h2>
+
+<ol>
+    <li>
+        <a href="/admin/crud?table=theater">Theaters</a>
+    </li>
+    <li>
+        <a href="/admin/crud?table=users">Users</a>
+    </li>
+    <li>
+        <a href="/admin/crud?table=play">Plays</a>
+    </li>
+    <li>
+        <a href="/admin/crud?table=showing">Showings</a>
+    </li>
+    <li>
+        <a href="/admin/crud?table=run">Runs</a>
+    </li>
+    <li>
+        <a href="/admin/crud?table=reservation">Reservations</a>
+    </li>
+</ol>
+
+{% endblock %}
