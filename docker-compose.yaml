@@ -17,6 +17,7 @@ services:
   transactional_db:
     image: postgres:15
     restart: always
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf -c hba_file=/var/lib/postgresql/data/pg_hba.conf
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -26,6 +27,8 @@ services:
     volumes:
       - pgdata_transactional:/var/lib/postgresql/data
       - ./transactional_db_initialization:/docker-entrypoint-initdb.d
+      - ./postgres_wal/archiving.conf:/etc/postgresql/postgresql.conf:ro
+      - ./postgres_wal/wal_archive:/var/lib/postgresql/wal_archive
 
     healthcheck:
         test: ["CMD-SHELL", "pg_isready -U postgres -d appdb_transactional"]
@@ -49,6 +52,24 @@ services:
     depends_on:
       transactional_db:
         condition: service_healthy
+        
+  backup:
+    image: postgres:15
+    depends_on:
+      - transactional_db
+    entrypoint: ["/bin/bash", "-c"]
+    command: >
+      "until pg_isready -h transactional_db -U postgres; do
+        echo 'Waiting for transactional_db...';
+        sleep 2;
+      done;
+      sleep 5;
+      echo 'Starting base backup';
+      PGPASSWORD=replicator_password pg_basebackup -h transactional_db -U replicator -D /backup/backup_$(date +%Y%m%d_%H%M%S) -Ft -z -P -v;
+      echo 'Backup completed';"
+    volumes:
+      - ./pg_basebackups:/backup
+      - ./postgres_wal/wal_archive:/var/lib/postgresql/wal_archive:ro
 
 volumes:
   pgdata_transactional:
