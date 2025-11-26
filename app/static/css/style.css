@@ -60,13 +60,21 @@ div.modal {
 div.modal-visible {
   display: block;
   background-color: white;
-  box-shadow: 10px 10px 0px gray;
+  box-shadow: 5px 5px 5px gray;
   border: 1px solid black;
   padding: 12px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+div.flex-row {
+  display: flex;
+}
+
+div.flex-row div:not(:first-child) {
+  margin-left: 4ch;
 }
 
 /* Table */
