@@ -3,37 +3,61 @@
 
 <h2>{{table_name}}</h2>
 
-<h3>Create</h3>
-
-<form action="">
-    {% for column in columns %}
-    <label for="{{column}}">{{column}}</label>
-    <input type="text" name="{{column}}">
-    {% endfor %}
-    <button type="submit" class="form-page-submit">Create</button>
-</form>
-
-<hr>
-
-<h3>Read</h3>
-
 <table>
     <tr>
         {% for column in columns %}
-        <th>{{column}}</th>
+        <th>{{ column }}</th>
         {% endfor %}
-        <th></th>
+        <th><button class="show-modal create" data-modal-id="create-modal">Create</button></th>
         <th></th>
     </tr>
     {% for row in rows %}
-    <tr>
+    <tr id="row-{{ loop.index0 }}">
         {% for val in row %}
-        <td>{{val}}</td>
+        <td class="data-cell" data-column="{{ columns[loop.index0] }}" data-value="{{ val }}">{{ val }}</td>
         {% endfor %}
-        <td><button>Update</button></td>
-        <td><button>Delete</button></td>
+        <td><button class="show-modal update" data-modal-id="update-modal" data-row="{{ loop.index0 }}">Update</button>
+        </td>
+        <td><button class="show-modal delete" data-modal-id="delete-modal" data-row="{{ loop.index0 }}">Delete</button>
+        </td>
     </tr>
     {% endfor %}
 </table>
+
+<div class="modal" id="create-modal">
+    <h2>Create</h2>
+    <form action="/api/crud/create" method="post" id="create-form">
+        {% for column in columns %}
+        <input type="hidden" name="table" value="{{table_name}}">
+        <label for="{{column}}">{{column}}</label>
+        <input type="text" name="column.{{column}}">
+        {% endfor %}
+        <button type="submit" class="form-page-submit close-modal" data-modal-id="create-modal">Create</button>
+        <button type="button" class="close-modal" data-modal-id="create-modal">Cancel</button>
+    </form>
+</div>
+
+<div class="modal" id="update-modal">
+    <!-- ? Technically could be combined with the create modal, but that would increase intellectual overhead -->
+    <h2>Update (TODO)</h2>
+    <form action="/api/crud/update" method="post" id="update-form">
+        {% for column in columns %}
+        <input type="hidden" name="table" value="{{table_name}}">
+        <label for="{{column}}">{{column}}</label>
+        <input type="text" name="column.{{column}}">
+        {% endfor %}
+        <button type="submit" class="form-page-submit close-modal" data-modal-id="update-modal">Update</button>
+        <button type="button" class="close-modal" data-modal-id="update-modal">Cancel</button>
+    </form>
+</div>
+
+<div class="modal" id="delete-modal">
+    <h2>Delete (TODO)</h2>
+    <form action="/api/crud/delete" method="post" id="delete-form">
+        <p>Are you sure you want to delete this entry?</p>
+        <button type="submit" class="form-page-submit close-modal" data-modal-id="delete-modal">Delete</button>
+        <button type="button" class="close-modal" data-modal-id="delete-modal">Cancel</button>
+    </form>
+</div>
 
 {% endblock %}

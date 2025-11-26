@@ -51,6 +51,23 @@ nav {
   }
 }
 
+/* Modals */
+
+div.modal {
+  display: none;
+}
+
+div.modal-visible {
+  display: block;
+  background-color: white;
+  box-shadow: 10px 10px 0px gray;
+  border: 1px solid black;
+  padding: 12px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /* Table */
 
