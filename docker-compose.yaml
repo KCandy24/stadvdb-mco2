@@ -75,6 +75,9 @@ services:
       done;
       echo 'Starting base backup';
       PGPASSWORD=replicator_password pg_basebackup -h transactional_db -U replicator -D /backup/backup_$(date +%Y%m%d_%H%M%S) -Ft -z -P -v;
+      echo 'Setting permissions on backup files...';
+      chmod -R 755 /backup;
+      chown -R 999:999 /backup;
       echo 'Backup completed';"
     volumes:
       - ./pg_basebackups:/backup
@@ -99,8 +102,30 @@ services:
     volumes:
       - wal_archive_volume:/var/lib/postgresql/wal_archive:ro
       - ./postgres_wal/wal_archive_local:/backup
+  standby_db:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata_standby:/var/lib/postgresql/data
+      - ./pg_basebackups:/pg_basebackups
+      - ./postgres_wal/wal_archive_local:/var/lib/postgresql/wal_archive
+      - ./postgres_wal/init_standby.sh:/init_standby.sh:ro
+    depends_on:
+      transactional_db:
+        condition: service_healthy
+    user: root
+    command: bash -c "chown -R postgres:postgres /var/lib/postgresql/wal_archive 2>/dev/null || true; chmod -R 744 /var/lib/postgresql/wal_archive 2>/dev/null || true; gosu postgres bash -c '/init_standby.sh && exec postgres'"
 
 volumes:
   pgdata_transactional:
   pgdata_analytical:
   wal_archive_volume:
+  pgdata_standby: 
