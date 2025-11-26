@@ -109,10 +109,11 @@ class __Controller:
     ) -> CursorResult[Any]:
         """TODO: This is untested"""
         set_fields = ", ".join([f"{key} = :{key}" for key, _ in set_data.items()])
-        where_fields = " AND ".join([f"{key} = :{key}" for key, _ in where_data.items()])
+        where_fields = " AND ".join([f"{key} = :where_{key}" for key, _ in where_data.items()])
         query = f"UPDATE {schema}.{table} SET {set_fields} WHERE {where_fields}"
         data = set_data
-        data.update(where_data)
+        data.update({"where_" + key: value for key, value in where_data.items()})
+        print(f"{query = }\n{data = }")
         return self.execute_sql_write(query, data)
 
 

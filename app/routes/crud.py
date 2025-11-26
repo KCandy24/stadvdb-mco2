@@ -1,9 +1,11 @@
+from pkgutil import get_data
 from flask import Blueprint, session, redirect, request
 from app.lib.sql_controller import controller_transactional
 
 bp = Blueprint("crud", __name__, url_prefix="/api/crud")
 
 COLUMN_PREFIX = "column."
+
 
 @bp.post("create")
 def create_route():
@@ -20,7 +22,20 @@ def create_route():
 
 @bp.post("update")
 def update_route():
-    """TODO"""
+    old_prefix = COLUMN_PREFIX + "old."
+    update_request = dict(request.form.items())
+    table = update_request["table"]
+    where_data = {
+        key.removeprefix(old_prefix): value
+        for key, value in update_request.items()
+        if key.startswith(old_prefix) and value
+    }
+    set_data = {
+        key.removeprefix(COLUMN_PREFIX): value
+        for key, value in update_request.items()
+        if key.startswith(COLUMN_PREFIX) and not key.startswith(old_prefix) and value
+    }
+    controller_transactional.update("transactional", table, set_data, where_data)
     return redirect(request.referrer)
 
 
