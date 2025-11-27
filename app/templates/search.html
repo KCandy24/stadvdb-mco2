@@ -1,12 +1,24 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1>Search</h1>
-<p>Search type: {{search_type}}</p>
-<ul>
-    <!-- search_type is either `play` or `theater` -->
-    <!-- element is either a `play` or a `theater` -->
-    {% for element in elements %}
-    <li><a href="showings?{{search_type}}={{element}}">{{element}}</a></li>
+<h1>Search by {{search_type}}</h1>
+<!-- search_type is either `play` or `theater` -->
+<!-- element is either a `play` or a `theater` -->
+<table>
+    <tr>
+        {% for column in columns %}
+        <th>{{column}}</th>
+        {% endfor %}
+    </tr>
+    {% for row in elements %}
+    <tr>
+        {% for value in row %}
+        <td>
+            <a href="showings?{{search_type}}={{row[0]}}">
+                {{value}}
+            </a>
+        </td>
+        {% endfor %}
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% endblock %}

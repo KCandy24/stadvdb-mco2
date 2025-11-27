@@ -1,11 +1,15 @@
 """
 These routes are accessible to the public, i.e. even when not logged in.
 """
-from flask import Blueprint, render_template, session, request
-from app.routes.dummy_data import PLAYS, THEATERS, SHOWINGS
+
+from flask import Blueprint, render_template, request, session
+
 from app.db import get_db
+from app.lib.sql_controller import controller_transactional
+from app.routes.dummy_data import PLAYS, SHOWINGS, THEATERS
 
 bp = Blueprint("pages", __name__)
+
 
 @bp.get("/")
 def index():
@@ -26,45 +30,73 @@ def sign_up():
 @bp.get("/search")
 def search():
     search_type = request.args.get("by")  # either "play" or "theater"
-    page = request.args.get("page")
+    page = request.args.get("page")  # pagination, TODO: currently unused
 
-    # TODO: Use an actual database.
-    # TODO: Pagination.
+    assert search_type
+
+    columns = {
+        "play": ["play_id", "play_name"],
+        "theater": ["theater_id", "theater_name", "location"],
+    }
+
+    elements = controller_transactional.read(
+        "transactional", search_type, columns[search_type]
+    )
 
     return render_template(
         "search.html",
         session=session,
         search_type=search_type,
-        elements=PLAYS if search_type == "play" else THEATERS,
+        elements=elements,
+        columns=columns[search_type],
     )
 
 
 @bp.get("/showings")
-def showings():
+def showings_route():
     play = request.args.get("play") or ""
     theater = request.args.get("theater") or ""
+    page = request.args.get("page")  # pagination, TODO: currently unused
 
-    # TODO: Use an actual database.
-    # TODO: Pagination.
+    columns = [
+        "play_id",
+        "theater_id",
+        "play_name",
+        "theater_name",
+        "basefee",
+        "reservation_period_start",
+        "reservation_period_end",
+    ]
 
-    filtered_showings = SHOWINGS
+    showings = []
+
     if play:
-        filtered_showings = filter(
-            lambda showing: showing["play"] == play, filtered_showings
+        showings = controller_transactional.execute_sql_read(
+            "SELECT transactional.read_showings_by_play(:play_id)", {"play_id": play}
         )
-    if theater:
-        filtered_showings = filter(
-            lambda showing: showing["theater"] == theater, filtered_showings
+    elif theater:
+        showings = controller_transactional.execute_sql_read(
+            "SELECT transactional.read_showings_by_theater(:theater_id)",
+            {"theater_id": theater},
         )
+
+    showings_formatted = []
+    for showing in showings:
+        current_showing = []
+        for value in showing[0].removeprefix("(").removesuffix(")").split(","):
+            current_showing.append(value.replace('"', ""))
+        showings_formatted.append(current_showing)
 
     return render_template(
         "showings.html",
         session=session,
         play=play,
         theater=theater,
-        showings=filtered_showings,
+        columns=columns,
+        showings=showings_formatted,
     )
-    
+
+
 @bp.route("/db-test")
 def db_test():
     conn = get_db()

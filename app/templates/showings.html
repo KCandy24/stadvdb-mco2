@@ -1,16 +1,23 @@
-{% extends "layout.html" %}
-{% block body %}
+{% extends "layout.html" %} {% block body %}
 <h1>Showings</h1>
 <table>
     <tr>
-        <th>Play</th>
-        <th>Theater</th>
+        {% for column in columns %}
+        <th>{{column}}</th>
+        {% endfor %}
     </tr>
     {% for showing in showings %}
     <tr>
-        <td>{{showing.play}}</td>
-        <td>{{showing.theater}}</td>
-        <td><button><a href="reserve?play={{showing.play}}&theater={{showing.theater}}">Reserve</a></button></td>
+        {% for value in showing %}
+        <td>{{value}}</td>
+        {% endfor %}
+        <td>
+            <button>
+                <a href="reserve?play={{showing[0]}}&theater={{showing[1]}}">
+                    Reserve
+                </a>
+            </button>
+        </td>
     </tr>
     {% endfor %}
 </table>

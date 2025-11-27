@@ -45,7 +45,7 @@ def admin_crud():
     assert table_name is not None
     assert table_name in controller_transactional.get_tables("transactional")
     columns = controller_transactional.get_columns("transactional", table_name)
-    rows = controller_transactional.get_rows(f"transactional.{table_name}")
+    rows = controller_transactional.get_rows("transactional", table_name)
     return render_template(
         "admin/crud.html", table_name=table_name, columns=columns, rows=rows
     )

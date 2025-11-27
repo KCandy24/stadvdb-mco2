@@ -1,8 +1,8 @@
 import os
-from sqlalchemy import create_engine, text
 from pathlib import Path
 from typing import Any, Sequence
-from sqlalchemy import CursorResult, Row
+
+from sqlalchemy import CursorResult, Row, create_engine, text
 
 
 class __Controller:
@@ -16,7 +16,6 @@ class __Controller:
         self.engine = create_engine(self.dbUrl)
         self.sql_path = Path(__file__).parent / "sql"
 
-
     def execute_sql_write(self, query: str, data: dict = {}):
         with self.engine.connect() as conn:
             try:
@@ -26,7 +25,6 @@ class __Controller:
             except Exception as e:
                 conn.rollback()
                 raise e
-
 
     def execute_sql_read(self, query: str, data: dict = {}):
         with self.engine.connect() as conn:
@@ -38,7 +36,6 @@ class __Controller:
                 conn.rollback()
                 raise e
 
-
     def execute_sql_file(self, path: str):
         sql_path = self.sql_path / path
 
@@ -49,7 +46,6 @@ class __Controller:
             conn.execute(text(sql))
             conn.commit()
         print(f"Executed SQL file: {sql_path.name}")
-
 
     def get_tables(self, schema_name: str) -> list[str]:
         query = """
@@ -64,7 +60,6 @@ class __Controller:
         result = controller_transactional.execute_sql_read(query, args)
         table_names = [row.tuple()[0] for row in result]
         return table_names
-
 
     def get_columns(self, schema_name: str, table_name: str) -> list[str]:
         columns_query = """
@@ -84,44 +79,70 @@ class __Controller:
             column_names.append(row.tuple()[0])
         return column_names
 
-
-    def get_rows(self, table_name: str) -> Sequence[Row[Any]]:
+    def get_rows(self, schema_name: str, table_name: str) -> Sequence[Row[Any]]:
         """
         ! We can't put table names as args, so ensure that `table_name` is really
         ! just the name of a table via assertions
         ! e.g. `assert table_name in get_tables("transactional")`
         """
-        query = f"SELECT * FROM {table_name}"
+        query = f"SELECT * FROM {schema_name}.{table_name}"
         result = controller_transactional.execute_sql_read(query)
         return result
 
-
-    def insert(self, schema: str, table: str, data: dict[str, str]) -> CursorResult[Any]:
+    def insert(
+        self, schema: str, table: str, data: dict[str, str]
+    ) -> CursorResult[Any]:
         columns = ", ".join(data.keys())
         placeholders = ", ".join(map(lambda k: f":{k}", data.keys()))
         query = f"INSERT INTO {schema}.{table} ({columns}) VALUES ({placeholders})"
         print(f"{query = }\n{data = }")
         return self.execute_sql_write(query, data)
 
+    def read(
+        self,
+        schema: str,
+        table: str,
+        rows: list[str],
+        where_data: dict[str, str] | None = None,
+    ) -> CursorResult[Any]:
+        if where_data is not None:
+            where_fields = " AND ".join(
+                [f"{key} = :where_{key}" for key, _ in where_data.items()]
+            )
+            where_clause = f"WHERE {where_fields}"
+        else:
+            where_clause = ""
+        rows_list = ", ".join(rows)
+        query = f"SELECT {rows_list} FROM {schema}.{table} {where_clause}"
+        return self.execute_sql_write(query, where_data)
 
     def update(
-        self, schema: str, table: str, set_data: dict[str, str], where_data: dict[str, str]
+        self,
+        schema: str,
+        table: str,
+        set_data: dict[str, str],
+        where_data: dict[str, str],
     ) -> CursorResult[Any]:
-        """TODO: This is untested"""
         set_fields = ", ".join([f"{key} = :{key}" for key, _ in set_data.items()])
-        where_fields = " AND ".join([f"{key} = :where_{key}" for key, _ in where_data.items()])
+        where_fields = " AND ".join(
+            [f"{key} = :where_{key}" for key, _ in where_data.items()]
+        )
         query = f"UPDATE {schema}.{table} SET {set_fields} WHERE {where_fields}"
         data = set_data
         data.update({"where_" + key: value for key, value in where_data.items()})
         print(f"{query = }\n{data = }")
         return self.execute_sql_write(query, data)
 
-
-    def delete(self, schema: str, table: str, where_data: dict[str, str]) -> CursorResult[Any]:
+    def delete(
+        self, schema: str, table: str, where_data: dict[str, str]
+    ) -> CursorResult[Any]:
         """TODO: This is untested"""
-        where_fields = " AND ".join([f"{key} = :{key}" for key, _ in where_data.items()])
+        where_fields = " AND ".join(
+            [f"{key} = :{key}" for key, _ in where_data.items()]
+        )
         query = f"DELETE FROM {schema}.{table} WHERE {where_fields}"
         return self.execute_sql_write(query, where_data)
+
 
 credentials_transactional = {
     "PG_USER": "postgres",
