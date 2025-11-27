@@ -1,5 +1,17 @@
 CREATE SCHEMA IF NOT EXISTS analytical;
 
+DROP TABLE IF EXISTS analytical.etl_log;
+
+CREATE TABLE analytical.etl_log (
+    log_id SERIAL PRIMARY KEY,
+    last_run_time TIMESTAMP DEFAULT '1900-01-01 00:00:00',
+    status VARCHAR(20) DEFAULT 'PENDING'
+);
+
+INSERT INTO analytical.etl_log (last_run_time, status) 
+SELECT '1900-01-01 00:00:00', 'INIT'
+WHERE NOT EXISTS (SELECT 1 FROM analytical.etl_log);
+
 CREATE TABLE IF NOT EXISTS analytical.dim_customer(
     customer_id SERIAL PRIMARY KEY,
     o_user_id INT,
@@ -13,6 +25,8 @@ CREATE TABLE IF NOT EXISTS analytical.dim_show(
     show_id SERIAL PRIMARY KEY,
     o_play_id INT,
     o_showing_id INT,
+    o_run_id INT,
+    run_start_ts TIMESTAMP, 
     basefee NUMERIC(10,2),
     play_name VARCHAR(50)
 );
@@ -66,17 +80,8 @@ CREATE TABLE IF NOT EXISTS analytical.fact_sale (
         ON DELETE SET NULL
 );
 
-CREATE TABLE IF NOT EXISTS analytical.etl_log (
-    log_id SERIAL PRIMARY KEY,
-    last_run_time TIMESTAMP DEFAULT '1900-01-01 00:00:00'
-);
-
-INSERT INTO analytical.etl_log (last_run_time) 
-SELECT '1900-01-01 00:00:00' 
-WHERE NOT EXISTS (SELECT 1 FROM analytical.etl_log);
-
+CREATE UNIQUE INDEX IF NOT EXISTS idx_dim_show_run_oid ON analytical.dim_show(o_run_id);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_dim_customer_oid ON analytical.dim_customer(o_user_id);
-CREATE UNIQUE INDEX IF NOT EXISTS idx_dim_show_oid ON analytical.dim_show(o_showing_id);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_dim_venue_oid ON analytical.dim_venue(o_seat_id);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_dim_time_date ON analytical.dim_time(sale_date);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_fact_sale_oid ON analytical.fact_sale(o_reservation_id);

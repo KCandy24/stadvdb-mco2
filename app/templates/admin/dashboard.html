@@ -28,4 +28,75 @@
     </li>
 </ol>
 
+<h1>Reports</h1><h2>Box Office</h2>
+<table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 30px;">
+    <thead>
+        <tr style="background-color: #e8f4f8;">
+            {% for col in box_columns %}
+                <th style="text-align: left;">{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in box_rows %}
+        <tr>
+            {% for val in row %}
+                <td>{{ val }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="{{ box_columns|length }}">No data available to generate report.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>High Value Customers</h2>
+<table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 30px;">
+    <thead>
+        <tr style="background-color: #e8f4f8;"> 
+            {% for col in cust_columns %}
+                <th style="text-align: left;">{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in cust_rows %}
+        <tr>
+            {% for val in row %}
+                    <td>{{ val }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="{{ cust_columns|length }}">No data available to generate report.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Most Popular Plays per Theater</h2>
+<table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 30px;">
+    <thead>
+        <tr style="background-color: #e8f4f8;"> 
+            {% for col in pop_columns %}
+                <th style="text-align: left;">{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in pop_rows %}
+        <tr>
+            {% for val in row %}
+                <td>{{ val }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr><td colspan="{{ pop_columns|length }}">No data available to generate report.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
 {% endblock %}

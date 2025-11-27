@@ -5,12 +5,17 @@ DECLARE
     v_last_run TIMESTAMP;
     v_new_run_time TIMESTAMP;
 BEGIN
+    SELECT last_run_time INTO v_last_run 
+    FROM analytical.etl_log 
+    ORDER BY log_id DESC LIMIT 1;
 
-    SELECT last_run_time INTO v_last_run FROM analytical.etl_log ORDER BY log_id DESC LIMIT 1;
+    IF v_last_run IS NULL THEN
+        v_last_run := '1900-01-01 00:00:00';
+    END IF;
 
     v_new_run_time := NOW();
 
-    RAISE NOTICE 'Fetching data created after: %', v_last_run;
+    RAISE NOTICE 'Starting ETL. Processing data from % to %', v_last_run, v_new_run_time;
 
     INSERT INTO analytical.dim_customer (o_user_id, lastname, firstname, birthday, email)
     SELECT user_id, lastname, firstname, birthday, email
@@ -18,18 +23,21 @@ BEGIN
     ON CONFLICT (o_user_id) DO UPDATE 
     SET lastname = EXCLUDED.lastname, email = EXCLUDED.email;
 
-    INSERT INTO analytical.dim_show (o_play_id, o_showing_id, basefee, play_name)
-    SELECT p.play_id, s.showing_id, s.basefee, p.play_name
-    FROM source_transactional.showing s
+    INSERT INTO analytical.dim_show (
+        o_play_id, o_showing_id, basefee, play_name, o_run_id, run_start_ts
+    )
+    SELECT 
+        p.play_id, s.showing_id, s.basefee, p.play_name, r.run_id, run_start_time
+    FROM source_transactional.run r
+    JOIN source_transactional.showing s ON r.showing_id = s.showing_id
     JOIN source_transactional.play p ON s.play_id = p.play_id
-    ON CONFLICT (o_showing_id) DO NOTHING;
+    ON CONFLICT (o_run_id) DO NOTHING;
 
     INSERT INTO analytical.dim_venue (o_theater_id, o_seat_id, theater_name, location, seat_column, seat_row)
     SELECT t.theater_id, s.seat_id, t.theater_name, t.location, s.seat_column, s.seat_row
     FROM source_transactional.seat s
     JOIN source_transactional.theater t ON s.theater_id = t.theater_id
     ON CONFLICT (o_seat_id) DO NOTHING;
-
 
     INSERT INTO analytical.dim_time (sale_date, day_number, month_number, quarter, year)
     SELECT DISTINCT 
@@ -39,9 +47,9 @@ BEGIN
         EXTRACT(QUARTER FROM r.time_reserved),
         EXTRACT(YEAR FROM r.time_reserved)
     FROM source_transactional.reservation r
-    WHERE r.time_reserved > v_last_run
+    WHERE r.time_reserved > v_last_run 
+      AND r.time_reserved <= v_new_run_time
     ON CONFLICT (sale_date) DO NOTHING;
-
 
     INSERT INTO analytical.fact_sale (
         customer_id, venue_id, show_id, time_id, 
@@ -60,16 +68,17 @@ BEGIN
     JOIN source_transactional.seat seat_src ON r.seat_id = seat_src.seat_id
 
     JOIN analytical.dim_customer dc ON r.user_id = dc.o_user_id
-    JOIN analytical.dim_show ds ON s.showing_id = ds.o_showing_id
+    JOIN analytical.dim_show ds ON run.run_id = ds.o_run_id
     JOIN analytical.dim_venue dv ON r.seat_id = dv.o_seat_id
     JOIN analytical.dim_time dt ON DATE(r.time_reserved) = dt.sale_date
 
     WHERE r.time_reserved > v_last_run
-    
+      AND r.time_reserved <= v_new_run_time
     ON CONFLICT (o_reservation_id) DO NOTHING;
 
-    UPDATE analytical.etl_log SET last_run_time = v_new_run_time;
 
-    RAISE NOTICE '> % records processed', v_new_run_time;
+    INSERT INTO analytical.etl_log (last_run_time, status) 
+    VALUES (v_new_run_time, 'SUCCESS');
+
 END;
 $$;
