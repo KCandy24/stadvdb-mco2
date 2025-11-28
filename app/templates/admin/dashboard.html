@@ -1,5 +1,39 @@
 {% extends "layout.html" %}
 {% block body %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% macro render_table(columns, rows) %}
+<table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 30px;">
+    <thead>
+        <tr style="background-color: #e8f4f8;">
+            {% for col in columns %}
+                <th style="text-align: left;">{{ col }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            {% for val in row %}
+                <td>{{ val }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="{{ columns|length }}">No data available to generate report.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endmacro %}
+
+{% macro render_chart(id) %}
+<div style="width: 80%; margin: auto; margin-bottom: 20px;">
+    <canvas id="{{ id }}"></canvas>
+</div>
+{% endmacro %}
+
 <h1>Admin Dashboard</h1>
 
 <h2>Tables</h2>
@@ -28,75 +62,72 @@
     </li>
 </ol>
 
-<h1>Reports</h1><h2>Box Office</h2>
-<table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 30px;">
-    <thead>
-        <tr style="background-color: #e8f4f8;">
-            {% for col in box_columns %}
-                <th style="text-align: left;">{{ col }}</th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in box_rows %}
-        <tr>
-            {% for val in row %}
-                <td>{{ val }}</td>
-            {% endfor %}
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="{{ box_columns|length }}">No data available to generate report.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<h1>Reports</h1>
+
+<h2>Box Office</h2>
+{{ render_chart('box_office_chart') }}
+{{ render_table(box_columns, box_rows) }}
 
 <h2>High Value Customers</h2>
-<table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 30px;">
-    <thead>
-        <tr style="background-color: #e8f4f8;"> 
-            {% for col in cust_columns %}
-                <th style="text-align: left;">{{ col }}</th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in cust_rows %}
-        <tr>
-            {% for val in row %}
-                    <td>{{ val }}</td>
-            {% endfor %}
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="{{ cust_columns|length }}">No data available to generate report.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{{ render_chart('cust_chart') }}
+{{ render_table(cust_columns, cust_rows) }}
 
 <h2>Most Popular Plays per Theater</h2>
-<table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-top: 10px; margin-bottom: 30px;">
-    <thead>
-        <tr style="background-color: #e8f4f8;"> 
-            {% for col in pop_columns %}
-                <th style="text-align: left;">{{ col }}</th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in pop_rows %}
-        <tr>
-            {% for val in row %}
-                <td>{{ val }}</td>
-            {% endfor %}
-        </tr>
-        {% else %}
-        <tr><td colspan="{{ pop_columns|length }}">No data available to generate report.</td></tr>
-        {% endfor %}
-    </tbody>
-</table>
+{{ render_chart('pop_chart') }}
+{{ render_table(pop_columns, pop_rows) }}
 
+<script>
+    function createChart(canvasId, labels, data, labelText, chartType = 'bar') {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+
+        if (!labels || labels.length === 0) {
+            console.warn(`No data available for chart: ${canvasId}`);
+            return;
+        }
+
+        const ctx = canvas.getContext('2d');
+        new Chart(ctx, {
+            type: chartType,
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: labelText,
+                    data: data,
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    }
+
+    createChart(
+        'box_office_chart', 
+        {{ box_chart_labels | default([]) | tojson }}, 
+        {{ box_chart_data | default([]) | tojson }}, 
+        'Total Revenue'
+    );
+
+    createChart(
+        'cust_chart', 
+        {{ cust_chart_labels | default([]) | tojson }}, 
+        {{ cust_chart_data | default([]) | tojson }}, 
+        'Total Spent'
+    );
+
+    createChart(
+        'pop_chart', 
+        {{ pop_chart_labels | default([]) | tojson }}, 
+        {{ pop_chart_data | default([]) | tojson }}, 
+        'Tickets Sold'
+    );
+</script>
 
 {% endblock %}
