@@ -2,13 +2,16 @@
 
 Movie seat reservation web application with both transactional and analytical operations. 
 
-## To run the program,
 
-1. Ensure that you have `uv` installed.
-2. Run `uv sync`.
-3. `docker-compose down -v`
-4. `docker-compose up --build`
-5. Access the frontend app
+## Preprocessing,
+1. Run the following commands on bash
+ - `chmod +x postgres_wal/init_standby.sh`
+ - `dos2unix postgres_wal/init_standby.sh`
+ - `chmod +x postgres_wal/failover_monitor.sh`
+ - `dos2unix postgres_wal/failover_monitor.sh`.
+
+## Composing the program,
+1. Open Docker and run `docker-compose up --build`.
 
 ---
 
