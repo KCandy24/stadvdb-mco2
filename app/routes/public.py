@@ -59,6 +59,7 @@ def showings_route():
     page = request.args.get("page")  # pagination, TODO: currently unused
 
     columns = [
+        "showing_id",
         "play_id",
         "theater_id",
         "play_name",
@@ -88,6 +89,25 @@ def showings_route():
         theater=theater,
         columns=columns,
         showings=showings,
+    )
+
+
+@bp.get("/runs")
+def runs_route():
+    showing = request.args.get("showing")
+    play = request.args.get("play")
+    theater = request.args.get("theater")
+    runs = controller_transactional.execute_sql_read(
+        "SELECT * FROM transactional.read_runs_by_showing(:showing_id)",
+        {"showing_id": showing},
+    )
+    return render_template(
+        "runs.html",
+        showing=showing,
+        play=play,
+        theater=theater,
+        runs=runs,
+        columns=controller_transactional.get_columns("transactional", "run"),
     )
 
 

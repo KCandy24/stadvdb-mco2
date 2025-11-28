@@ -4,26 +4,50 @@
     You are about to reserve a showing of <em>{{play}}</em> at
     <em>{{theater}}</em>.
 </p>
+
+<p>The base fee is P{{base_fee}}.</p>
+
+<p>Note that each seat has its own associated price to be added onto it.</p>
+
 <p>Please select which seats to reserve:</p>
 
-<div class="seat-layout">
-    {% for row in layout %}
-    <div class="seat-row">
-        {% set outer_loop = loop %} {% for col in row %} {% if col %}
-        <button class="seat" data-seat="{{outer_loop.index0}}-{{loop.index0}}">
-            🪑
-        </button>
-        {% else %}
-        <button disabled class="seat">🪑</button>
-        {% endif %} {% endfor %}
+<h2>Seats</h2>
+<div class="scroll">
+    <div class="seat-layout">
+        {% for row in layout %}
+        <div class="seat-row">
+            {% set outer_loop = loop %}
+            {% for col in row %}
+            {% set row_idx = outer_loop.index0 %}
+            {% set col_idx = loop.index0 %}
+            {% if col %}
+            <button class="seat" data-seat="{{row_idx}}-{{col_idx}}" data-price="{{col}}"
+                data-seat-id="{{seat_ids[row_idx][col_idx]}}">
+                🪑 P{{col}}
+            </button>
+            {% else %}
+            <button disabled class="seat">❌ -------</button>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
+<span>Total price: </span>
+<span id="total-price">P0</span>
+
 <form action="/api/reserve" method="post">
-    <input type="hidden" name="play" value="{{play}}" />
-    <input type="hidden" name="theater" value="{{theater}}" />
-    <input type="hidden" name="seats" value="" />
-    <button type="submit">Proceed (TODO: Connect this to database)</button>
+    <label for="play">play_id</label>
+    <input readonly type="text" name="play" value="{{play}}" />
+    <label for="theater">theater</label>
+    <input readonly type="text" name="theater" value="{{theater}}" />
+    <label for="run_id">run</label>
+    <input readonly type="text" name="run" value="{{run}}" />
+    <label for="base_fee">base_fee</label>
+    <input readonly type="text" name="base_fee" value="{{base_fee}}" />
+    <label for="seats">seat_ids</label>
+    <input readonly type="text" name="seats" value="" />
+    <button type="submit">Proceed</button>
 </form>
 {% endblock %}

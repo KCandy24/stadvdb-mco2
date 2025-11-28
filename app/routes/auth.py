@@ -13,6 +13,8 @@ def login():
     # TODO: Connect to database and check if valid user and password.
 
     session["name"] = name
+    session["id"] = 1
+    
     if name == "user":
         session["type"] = "user"
     elif name == "admin":
