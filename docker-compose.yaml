@@ -99,6 +99,27 @@ services:
     user: root
     command: bash -c "chown -R postgres:postgres /var/lib/postgresql/wal_archive 2>/dev/null || true; chmod -R 744 /var/lib/postgresql/wal_archive 2>/dev/null || true; gosu postgres bash -c '/init_standby.sh && exec postgres'"
 
+  load_tester:
+    build:
+      context: .
+      dockerfile: Dockerfile.jmeter
+    container_name: jmeter_load_test
+    depends_on:
+      transactional_db:
+        condition: service_healthy
+    volumes:
+      - ./jmeter_tests:/tests
+      - ./jmeter_results:/results
+    working_dir: /tests
+
+    command: >
+      -n 
+      -t deadlock_test.jmx 
+      -l /results/result.jtl 
+      -e -o /results/dashboard 
+      -Jdb_host=transactional_db
+      -j /results/jmeter.log
+
   etl_scheduler:
     build: .
     command: uv run python scheduler.py

@@ -1,0 +1,12 @@
+FROM justb4/jmeter:5.5
+
+ENV PG_DRIVER_VERSION=42.6.0
+ADD https://jdbc.postgresql.org/download/postgresql-${PG_DRIVER_VERSION}.jar /opt/apache-jmeter-5.5/lib/postgresql-${PG_DRIVER_VERSION}.jar
+
+RUN printf '#!/bin/sh\n\
+echo "Cleaning previous test results..."\n\
+rm -rf /results/*\n\
+exec /entrypoint.sh "$@"\n' > /run_and_clean.sh \
+    && chmod +x /run_and_clean.sh
+
+ENTRYPOINT ["/run_and_clean.sh"]

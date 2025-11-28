@@ -4,7 +4,7 @@ from sqlalchemy import text
 from app.lib.sql_controller import controller_analytical
 
 def run_etl_job():
-    print(f"[Scheduler] Initiating ETL.")
+
     try:
         with controller_analytical.engine.connect() as conn:
             conn.execute(text("CALL analytical.batch_update_dw_incremental();"))

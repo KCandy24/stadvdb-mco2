@@ -1,6 +1,8 @@
 .venv/
 .env
 
+jmeter_results/
+
 *.pyc
 __pycache__/
 
