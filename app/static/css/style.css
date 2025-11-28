@@ -111,6 +111,11 @@ button.form-page-submit {
   margin-top: 1em;
 }
 
+button.special {
+  color: green;
+  border-color: green;
+}
+
 button>a {
   text-decoration: none;
   color: inherit;

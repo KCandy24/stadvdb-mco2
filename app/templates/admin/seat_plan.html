@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>Seat Plan</h2>
+
+<form action="/admin/make-seat" method="post">
+    <label for="theater_id">Theater ID</label>
+    <input readonly type="theater_id" name="theater_id" value="{{theater_id}}">
+
+    <label for="rows">Rows</label>
+    <input type="number" name="rows">
+
+    <label for="columns">Columns</label>
+    <input type="number" name="columns">
+
+    <label for="default_price">Default Price</label>
+    <input type="number" name="default_price">
+
+    <button type="submit">Make seat plan</button>
+</form>
+
+{% endblock %}

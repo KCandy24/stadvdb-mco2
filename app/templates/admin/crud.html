@@ -9,6 +9,9 @@
         <th>{{ column }}</th>
         {% endfor %}
         <th><button class="show-modal create" data-modal-id="create-modal">Create</button></th>
+        {% if table_name == "theater" %}
+        <th></th>
+        {% endif %}
         <th></th>
     </tr>
     {% for row in rows %}
@@ -18,6 +21,13 @@
         {% endfor %}
         <td><button class="show-modal update" data-modal-id="update-modal" data-row="{{ loop.index0 }}">Update</button>
         </td>
+        {% if table_name == "theater" %}
+        <td>
+        <a href="/admin/seat-plan?theater_id={{row.theater_id}}">
+            <button class="special" id="manage-layout" data-theater-id="{{ row.theater_id }}">Create Seat Plan</button>
+        </a>
+        </td>
+        {% endif %}
         <td><button class="show-modal delete" data-modal-id="delete-modal" data-row="{{ loop.index0 }}">Delete</button>
         </td>
     </tr>
