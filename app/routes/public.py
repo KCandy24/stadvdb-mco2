@@ -72,20 +72,14 @@ def showings_route():
 
     if play:
         showings = controller_transactional.execute_sql_read(
-            "SELECT transactional.read_showings_by_play(:play_id)", {"play_id": play}
+            "SELECT * FROM transactional.read_showings_by_play(:play_id)",
+            {"play_id": play},
         )
     elif theater:
         showings = controller_transactional.execute_sql_read(
-            "SELECT transactional.read_showings_by_theater(:theater_id)",
+            "SELECT * FROM transactional.read_showings_by_theater(:theater_id)",
             {"theater_id": theater},
         )
-
-    showings_formatted = []
-    for showing in showings:
-        current_showing = []
-        for value in showing[0].removeprefix("(").removesuffix(")").split(","):
-            current_showing.append(value.replace('"', ""))
-        showings_formatted.append(current_showing)
 
     return render_template(
         "showings.html",
@@ -93,7 +87,7 @@ def showings_route():
         play=play,
         theater=theater,
         columns=columns,
-        showings=showings_formatted,
+        showings=showings,
     )
 
 
