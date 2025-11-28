@@ -5,6 +5,7 @@ These routes are inaccessible when the user isn't logged in.
 from flask import Blueprint, redirect, render_template, request, session
 from sqlalchemy import Row, Sequence
 from typing import Any
+from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 
 from app.lib.sql_controller import controller_transactional
 
@@ -41,6 +42,7 @@ def reserve_page():
     play = request.args.get("play")
     theater = request.args.get("theater")
     run = request.args.get("run")
+    error = request.args.get("error")
     seats = controller_transactional.execute_sql_read(
         "SELECT * FROM transactional.read_seats_by_theater(:theater_id)",
         {"theater_id": theater},
@@ -84,7 +86,8 @@ def reserve_page():
         layout=layout,
         base_fee=base_fee,
         seat_ids=seat_ids,
-        reserved=reserved
+        reserved=reserved,
+        error=error,
     )
 
 
@@ -96,10 +99,19 @@ def reserve_showing():
     run = request.form.get("run")
     seats = request.form.get("seats")
 
-    assert play
-    assert theater
-    assert run
-    assert seats
+    try:
+        assert play
+        assert theater
+        assert run
+        assert seats
+    except AssertionError:
+        ref = request.referrer or "/"
+        parsed = urlparse(ref)
+        qs = dict(parse_qsl(parsed.query))
+        qs.update({"error": "Missing reservation data"})
+        new_query = urlencode(qs)
+        new_url = urlunparse(parsed._replace(query=new_query))
+        return redirect(new_url, code=303)
 
     reservation = {"play": play, "theater": theater, "run": run, "seats": seats}
     seat_ids = list(map(int, seats.split(",")))

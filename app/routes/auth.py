@@ -2,25 +2,27 @@
 These routes handle authentication.
 """
 
-from flask import Blueprint, request, redirect, session
+from flask import Blueprint, request, redirect, session, render_template
 from app.lib.sql_controller import controller_transactional
 
 bp = Blueprint("auth", __name__, url_prefix="/api/auth")
 
+
 @bp.errorhandler(AssertionError)
 def handle_assertion_error(e):
-    """
-    TODO: Replace error paths with try-catch blocks
-    """
     return redirect(request.referrer)
+
+ERROR_INVALID_USER = "Invalid user credentials"
 
 
 def login(email: str, password: str):
-    ERROR_INVALID_USER = "Invalid user credentials"
     query = "SELECT transactional.verify_user(:name, :password) AS v_user_id"
     data = {"name": email, "password": password}
 
-    v_user_id = controller_transactional.execute_sql_read(query, data)[0]
+    try:
+        v_user_id = controller_transactional.execute_sql_read(query, data)[0]
+    except Exception:
+        return redirect(request.referrer)
 
     if not v_user_id:
         return redirect(f"/login?error={ERROR_INVALID_USER}")
@@ -67,7 +69,10 @@ def sign_up_route():
         "email": email,
         "password": password
     }
-    controller_transactional.execute_sql_write(query, data)
+    try:
+        controller_transactional.execute_sql_write(query, data)
+    except Exception:
+        return render_template("sign-up.html", error=ERROR_INVALID_USER)
 
     return login(email, password)
 
