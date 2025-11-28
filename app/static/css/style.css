@@ -43,6 +43,10 @@ nav {
         text-decoration: none;
         color: black;
 
+        &#admin-dashboard-link {
+          color: red;
+        }
+
         &:hover {
           background-color: aqua;
         }

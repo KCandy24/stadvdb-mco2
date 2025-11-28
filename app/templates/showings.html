@@ -1,28 +1,26 @@
 {% extends "layout.html" %} {% block body %}
 <h1>Showings</h1>
-<div class="scroll">
-    <table>
-        <tr>
-            {% for column in columns %}
-            <th>{{column}}</th>
-            {% endfor %}
-        </tr>
-        {% for showing in showings %}
-        <tr>
-            {% for value in showing %}
-            <td>{{value}}</td>
-            {% endfor %}
-            <td>
-                <button>
-                    <a href="runs?showing={{showing[0]}}&play={{showing[1]}}&theater={{showing[2]}}">
-                        Reserve
-                    </a>
-                </button>
-            </td>
-        </tr>
+<table>
+    <tr>
+        {% for column in columns %}
+        <th>{{column}}</th>
         {% endfor %}
-    </table>
-</div>
+    </tr>
+    {% for showing in showings %}
+    <tr>
+        {% for value in showing %}
+        <td>{{value}}</td>
+        {% endfor %}
+        <td>
+            <button>
+                <a href="runs?showing={{showing[0]}}&play={{showing[1]}}&theater={{showing[2]}}">
+                    Reserve
+                </a>
+            </button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 
 
 {% endblock %}

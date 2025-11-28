@@ -23,8 +23,8 @@
                 {% endif %}
                 {% if session.name %}
                 <li><a href="/dashboard">Dashboard</a></li>
-                {% if session.name == "admin" %}
-                <li><a href="/admin/dashboard">Admin Dashboard</a></li>
+                {% if session.type == "admin" %}
+                <li><a href="/admin/dashboard" id="admin-dashboard-link">Admin Dashboard</a></li>
                 {% endif %}
                 <li><a href="/api/auth/logout">Logout</a></li>
                 {% endif %}
@@ -38,6 +38,7 @@
         <p>
             {% if session.name %}
             You are logged in as {{ session.name }}.
+            Your ID is {{session.id}}.
             {% else %}
             You are not logged in.
             {% endif %}

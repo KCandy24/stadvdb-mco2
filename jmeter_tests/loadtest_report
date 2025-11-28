@@ -4203,3 +4203,1985 @@ PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer
     FROM unnest(p_seat_ids) AS s
     ORDER BY s ASC""
 PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,456,0,20,20,null,0,0,0
+1764312168976,22,JDBC Request,200,OK,deadlock test 1-12,text,true,,41,0,20,20,null,22,0,0
+1764312168979,19,JDBC Request,23503 0,"org.postgresql.util.PSQLException: ERROR: insert or update on table ""reservation"" violates foreign key constraint ""fk_user""
+  Detail: Key (user_id)=(14) is not present in table ""users"".
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,458,0,20,20,null,0,0,0
+1764312168979,19,JDBC Request,23503 0,"org.postgresql.util.PSQLException: ERROR: insert or update on table ""reservation"" violates foreign key constraint ""fk_user""
+  Detail: Key (user_id)=(15) is not present in table ""users"".
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,458,0,20,20,null,0,0,0
+1764312168976,22,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312168976,22,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312168976,22,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312168979,19,JDBC Request,23503 0,"org.postgresql.util.PSQLException: ERROR: insert or update on table ""reservation"" violates foreign key constraint ""fk_user""
+  Detail: Key (user_id)=(18) is not present in table ""users"".
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,458,0,20,20,null,0,0,0
+1764312168976,23,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,0
+1764312168976,23,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312168976,24,JDBC Request,23503 0,"org.postgresql.util.PSQLException: ERROR: insert or update on table ""reservation"" violates foreign key constraint ""fk_user""
+  Detail: Key (user_id)=(20) is not present in table ""users"".
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,458,0,20,20,null,0,0,0
+1764312168979,21,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,0
+1764312168979,21,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312168976,24,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,0
+1764312168979,22,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312168979,22,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,0
+1764312168979,23,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312168976,25,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,0
+1764312168976,30,JDBC Request,200,OK,deadlock test 1-1,text,true,,41,0,20,20,null,30,0,0
+1764312168976,30,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,0
+1764312168976,30,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169007,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312169007,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312169007,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,20,20,null,0,0,0
+1764312169007,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,0
+1764312169007,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312169007,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169007,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,0
+1764312169007,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169007,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,0
+1764312169007,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,20,20,null,0,0,0
+1764312169007,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169009,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312169007,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,0
+1764312169009,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312169009,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,20,20,null,0,0,0
+1764312169007,3,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,0
+1764312169009,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,0
+1764312169009,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,20,20,null,0,0,0
+1764312169009,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,20,20,null,0,0,0
+1764312169007,4,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312169011,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312169011,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312169011,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312169011,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,20,20,null,0,0,0
+1764312169011,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169011,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,1
+1764312169014,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,20,20,null,0,0,0
+1764312169011,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,0
+1764312169014,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,0
+1764312169014,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312169014,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,20,20,null,0,0,0
+1764312169013,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,0
+1764312169013,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312169013,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,0
+1764312169014,3,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,0
+1764312169013,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169013,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,20,20,null,0,0,0
+1764312169011,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169011,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312169014,8,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,20,20,null,0,0,0
+1764312169024,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,20,20,null,0,0,0
+1764312169024,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312169029,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312169029,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,0
+1764312169029,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,0
+1764312169030,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,0
+1764312169030,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312169032,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,0
+1764312169033,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,20,20,null,0,0,0
+1764312169032,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169032,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,0
+1764312169034,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169034,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312169034,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312169029,6,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312169035,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,20,20,null,0,0,0
+1764312169030,5,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,0
+1764312169029,7,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,20,20,null,0,0,0
+1764312169030,6,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,20,20,null,0,0,0
+1764312169024,6,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169037,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,0
+1764312169037,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312169037,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169037,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,0
+1764312169037,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,20,20,null,0,0,0
+1764312169038,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,1
+1764312169039,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,20,20,null,0,0,0
+1764312169037,3,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312169039,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312169038,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169039,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169038,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,1
+1764312169039,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312169040,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,0
+1764312169039,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312169040,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,1
+1764312169041,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,20,20,null,0,0,0
+1764312169041,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,20,20,null,0,0,0
+1764312169041,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312169043,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,20,20,null,0,0,0
+1764312169045,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,20,20,null,0,0,0
+1764312169045,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312169045,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,0
+1764312169045,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169045,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,20,20,null,0,0,0
+1764312169046,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,0
+1764312169046,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312169046,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312169046,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169046,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,20,20,null,0,0,0
+1764312169046,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312169047,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,0
+1764312169047,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,0
+1764312169047,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,0
+1764312169047,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,20,20,null,0,0,0
+1764312169048,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312169048,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,20,20,null,0,0,0
+1764312169046,3,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169046,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,0
+1764312169046,4,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312169050,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,20,20,null,0,0,0
+1764312169051,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,1
+1764312169051,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,20,20,null,0,0,1
+1764312169051,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169052,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,20,20,null,0,0,0
+1764312169052,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312169052,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,0
+1764312169053,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312169053,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312169052,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312169052,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,0
+1764312169052,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169050,4,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,0
+1764312169053,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169050,4,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,20,20,null,0,0,0
+1764312169055,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312169054,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,0
+1764312169054,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312169054,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,20,20,null,0,0,0
+1764312169053,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,0
+1764312169056,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312169056,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312169056,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,20,20,null,0,0,0
+1764312169056,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,20,20,null,0,0,0
+1764312169056,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,1
+1764312169056,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,0
+1764312169057,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169058,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,20,20,null,0,0,0
+1764312169059,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312169059,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,0
+1764312169058,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312169059,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169059,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,0
+1764312169060,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312169059,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169060,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,0
+1764312169059,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,1
+1764312169060,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,20,20,null,0,0,0
+1764312169060,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312169061,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,20,20,null,0,0,0
+1764312169062,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,20,20,null,0,0,0
+1764312169063,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,20,20,null,0,0,0
+1764312169063,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169063,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,20,20,null,0,0,0
+1764312169064,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,20,20,null,0,0,0
+1764312169065,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,20,20,null,0,0,0
+1764312169065,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,20,20,null,0,0,0
+1764312169065,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,20,20,null,0,0,0
+1764312169063,3,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,20,20,null,0,0,0
+1764312169065,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,20,20,null,0,0,0
+1764312169064,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,20,20,null,0,0,0
+1764312169065,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,20,20,null,0,0,0
+1764312169066,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,20,20,null,0,0,1
+1764312169067,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,20,20,null,0,0,0
+1764312169063,4,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,20,20,null,0,0,0
+1764312169066,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,20,20,null,0,0,0
+1764312169067,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,20,20,null,0,0,0
+1764312169062,7,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,20,20,null,0,0,0
+1764312169067,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,20,20,null,0,0,0
+1764312169065,4,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169069,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-15,text,false,,450,0,20,20,null,0,0,0
+1764312169069,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-13,text,false,,450,0,20,20,null,0,0,0
+1764312169069,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-12,text,false,,450,0,18,18,null,0,0,0
+1764312169070,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-9,text,false,,450,0,17,17,null,0,0,0
+1764312169071,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-14,text,false,,450,0,17,17,null,0,0,0
+1764312169071,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-8,text,false,,450,0,17,17,null,0,0,0
+1764312169072,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-5,text,false,,450,0,17,17,null,0,0,0
+1764312169072,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-1,text,false,,450,0,17,17,null,0,0,0
+1764312169073,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-2,text,false,,450,0,17,17,null,0,0,0
+1764312169072,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-3,text,false,,450,0,17,17,null,0,0,0
+1764312169071,3,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-18,text,false,,450,0,14,13,null,0,0,0
+1764312169073,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-6,text,false,,450,0,13,13,null,0,0,1
+1764312169074,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(11, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-11,text,false,,450,0,13,13,null,0,0,0
+1764312169073,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-10,text,false,,450,0,13,13,null,0,0,0
+1764312169076,0,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-20,text,false,,450,0,10,10,null,0,0,0
+1764312169075,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(13, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-19,text,false,,450,0,10,10,null,0,0,0
+1764312169076,1,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-17,text,false,,450,0,7,7,null,0,0,0
+1764312169076,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-7,text,false,,450,0,5,5,null,0,0,0
+1764312169076,2,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(12, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-16,text,false,,450,0,2,2,null,0,0,0
+1764312169076,3,JDBC Request,23505 0,"org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint ""reservation_seat_id_run_id_key""
+  Detail: Key (seat_id, run_id)=(10, 6) already exists.
+  Where: SQL statement ""INSERT INTO transactional.reservation (user_id, run_id, seat_id)
+    SELECT
+        p_user_id,
+        p_run_id,
+        s
+    FROM unnest(p_seat_ids) AS s
+    ORDER BY s ASC""
+PL/pgSQL function transactional.batch_create_reservation(integer,integer,integer[]) line 3 at SQL statement",deadlock test 1-4,text,false,,450,0,1,1,null,0,0,0
