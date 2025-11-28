@@ -2,7 +2,7 @@
 These routes are accessible to the public, i.e. even when not logged in.
 """
 
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, session, redirect, jsonify
 
 from app.db import get_db
 from app.lib.sql_controller import controller_transactional
@@ -13,7 +13,9 @@ bp = Blueprint("pages", __name__)
 
 @bp.get("/")
 def index():
-    return render_template("index.html")
+    # Show current database status
+    current_db = controller_transactional.getCurrentEngine()
+    return render_template("index.html", current_db=current_db)
 
 
 @bp.get("/login")
@@ -98,3 +100,39 @@ def db_test():
     cur.execute("SELECT 1;")
     result = cur.fetchone()
     return {"db_response": result[0]}
+
+
+@bp.route("/failover", methods=["POST"])
+def failover():
+    print("=== FAILOVER ENDPOINT CALLED ===")
+    print(f"Current engine before: {controller_transactional.getCurrentEngine()}")
+    
+    controller_transactional.switchToBackup()
+    
+    print(f"Current engine after: {controller_transactional.getCurrentEngine()}")
+    print("=== FAILOVER COMPLETE ===")
+    
+    return jsonify({
+        "status": "success",
+        "message": "Switched to backup database",
+        "current_db": controller_transactional.getCurrentEngine()
+    }), 200
+
+
+@bp.route("/failback", methods=["POST"])
+def failback():
+    controller_transactional.switchToPrimary()
+    return jsonify({
+        "status": "success",
+        "message": "Switched back to primary database",
+        "current_db": controller_transactional.getCurrentEngine()
+    })
+
+
+@bp.route("/db-status")
+def db_status():
+    return jsonify({
+        "current_db": controller_transactional.getCurrentEngine(),
+        "primary_failed": controller_transactional.isPrimaryFailed(), 
+        "auto_failover": "enabled"  
+    })

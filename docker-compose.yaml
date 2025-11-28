@@ -99,6 +99,24 @@ services:
     user: root
     command: bash -c "chown -R postgres:postgres /var/lib/postgresql/wal_archive 2>/dev/null || true; chmod -R 744 /var/lib/postgresql/wal_archive 2>/dev/null || true; gosu postgres bash -c '/init_standby.sh && exec postgres'"
 
+  failover_monitor:
+    image: postgres:15
+    restart: always
+    depends_on:
+      transactional_db:
+        condition: service_healthy
+      standby_db:
+        condition: service_started
+    volumes:
+      - ./postgres_wal/failover_monitor.sh:/failover_monitor.sh:ro
+    entrypoint: ["/bin/bash", "/failover_monitor.sh"]
+    environment:
+      PRIMARY_HOST: transactional_db
+      STANDBY_HOST: standby_db
+      CHECK_INTERVAL: 10
+      FAILURE_THRESHOLD: 30
+      PGPASSWORD: postgres
+
   load_tester:
     build:
       context: .

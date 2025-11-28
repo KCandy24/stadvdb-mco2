@@ -7,3 +7,17 @@ docker exec -it stadvdb-mco2-standby_db-1 psql -U postgres -d appdb_transactiona
 docker exec -it stadvdb-mco2-standby_db-1 gosu postgres pg_ctl promote -D /var/lib/postgresql/data
 
 docker exec -it stadvdb-mco2-standby_db-1 psql -U postgres -d appdb_transactional -c "SELECT pg_is_in_recovery();"
+
+docker exec -it stadvdb-mco2-standby_db-1 psql -U postgres -d appdb_transactional -c "INSERT INTO test_replication (data) VALUES ('post-promotion test');"
+
+docker exec -it stadvdb-mco2-standby_db-1 psql -U postgres -d appdb_transactional -c "SELECT * FROM test_replication;"
+
+docker restart stadvdb-mco2-transactional_db-1
+
+docker exec -it stadvdb-mco2-transactional_db-1 gosu postgres pg_ctl stop -D /var/lib/postgresql/data
+
+docker exec -it stadvdb-mco2-transactional_db-1 bash -c "rm -rf /var/lib/postgresql/data/*"
+
+docker exec -it stadvdb-mco2-transactional_db-1 gosu postgres pg_basebackup -h standby_db -U replicator -D /var/lib/postgresql/data -Fp -Xs -P -R
+
+docker exec -it stadvdb-mco2-transactional_db-1 gosu postgres pg_ctl start -D /var/lib/postgresql/data

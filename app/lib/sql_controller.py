@@ -1,8 +1,11 @@
 import os
 from pathlib import Path
 from typing import Any, Sequence
+import threading
+import time
 
 from sqlalchemy import CursorResult, Row, create_engine, text
+from sqlalchemy.exc import OperationalError
 
 
 class __Controller:
@@ -14,17 +17,89 @@ class __Controller:
         self.dbName = credentials["PG_DB"]
         self.dbUrl = credentials["DB_URL"]
         self.backupUrl = credentials.get("BACKUP_URL") or None
-        self.dbEngine = create_engine(self.dbUrl)
-        self.backupEngine = create_engine(self.backupUrl) if self.backupUrl else None
+        self.dbEngine = create_engine(self.dbUrl, pool_pre_ping=True)
+        self.backupEngine = create_engine(self.backupUrl, pool_pre_ping=True) if self.backupUrl else None
 
-        self.engine = self.dbEngine
+        self._use_backup = False
+        self._auto_failover_enabled = True
+        self._primary_failed = False
+        self._lock = threading.Lock()
         self.sql_path = Path(__file__).parent / "sql"
+        
+        # Start health check thread if backup is configured
+        if self.backupEngine and self._auto_failover_enabled:
+            self._start_health_check()
 
-    def switchEngine(self):
-        if self.engine == self.dbEngine:
-            self.engine = self.backupEngine
-        else:
-            self.engine = self.dbEngine
+    def _start_health_check(self):
+        def health_check_loop():
+            consecutive_failures = 0
+            while self._auto_failover_enabled:
+                time.sleep(10)# Check every 5 seconds
+                
+                # Skip if already using backup
+                if self._use_backup:
+                    consecutive_failures = 0
+                    continue
+                
+                # Try to connect to primary
+                try:
+                    with self.dbEngine.connect() as conn:
+                        conn.execute(text("SELECT 1"))
+                    
+                    # Primary is healthy
+                    if consecutive_failures > 0:
+                        print(f"[Health Check] Primary recovered after {consecutive_failures} failures")
+                    consecutive_failures = 0
+                    self._primary_failed = False
+                    
+                except Exception as e:
+                    consecutive_failures += 1
+                    print(f"[Health Check] Primary unhealthy (failure {consecutive_failures}): {e}")
+                    
+                    # After 3 consecutive failures (30 seconds), switch to backup
+                    if consecutive_failures >= 3 and not self._use_backup:
+                        print("[Health Check] PRIMARY FAILED - Switching to backup database")
+                        with self._lock:
+                            self._use_backup = True
+                            self._primary_failed = True
+                        print("[Health Check] Now using BACKUP database")
+        
+        thread = threading.Thread(target=health_check_loop, daemon=True)
+        thread.start()
+        print("[Health Check] Auto-failover monitoring started")
+
+    @property
+    def engine(self):
+        """Always returns the correct engine based on failover state"""
+        with self._lock:
+            if self._use_backup and self.backupEngine:
+                return self.backupEngine
+            return self.dbEngine
+
+    def switchToBackup(self):
+        """Manually switch to backup database"""
+        with self._lock:
+            if self.backupEngine:
+                self._use_backup = True
+                print("[Manual] Switched to BACKUP database")
+            else:
+                print("[Manual] No backup database configured")
+
+    def switchToPrimary(self):
+        """Manually switch back to primary database"""
+        with self._lock:
+            self._use_backup = False
+            print("[Manual] Switched to PRIMARY database")
+
+    def getCurrentEngine(self):
+        """Get current engine name for debugging"""
+        with self._lock:
+            return "BACKUP" if self._use_backup else "PRIMARY"
+    
+    def isPrimaryFailed(self):
+        """Check if primary failed and auto-switched"""
+        with self._lock:
+            return self._primary_failed
 
     def execute_sql_write(self, query: str, data: dict = {}):
         with self.engine.connect() as conn:
