@@ -6,7 +6,9 @@ Movie seat reservation web application with both transactional and analytical op
 
 1. Ensure that you have `uv` installed.
 2. Run `uv sync`.
-3. Run `uv run flask --app app run --debug`. (Convenience scripts `run.bat` and `run.sh` are provided for this, too.)
+3. `docker-compose down -v`
+4. `docker-compose up --build`
+5. Access the frontend app
 
 ---
 
