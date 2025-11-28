@@ -11,4 +11,5 @@ dependencies = [
     "psycopg2>=2.9.11",
     "psycopg[binary]>=3.2.12",
     "sqlalchemy>=2.0.44",
+    "schedule>=1.2.2"
 ]

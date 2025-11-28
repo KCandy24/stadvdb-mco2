@@ -68,8 +68,8 @@ services:
       while true; do
         echo 'Syncing WAL files to local directory...';
         cp -rn /var/lib/postgresql/wal_archive/* /backup/ 2>/dev/null || true;
-        file_count=$(ls -1 /backup 2>/dev/null | wc -l);
-        echo \"Currently synced: $file_count WAL files\";
+        file_count=$$(ls -1 /backup 2>/dev/null | wc -l);
+        echo \"Currently synced: $$file_count WAL files\";
         sleep 30;
       done"
     volumes:
@@ -97,6 +97,23 @@ services:
         condition: service_healthy
     user: root
     command: bash -c "chown -R postgres:postgres /var/lib/postgresql/wal_archive 2>/dev/null || true; chmod -R 744 /var/lib/postgresql/wal_archive 2>/dev/null || true; gosu postgres bash -c '/init_standby.sh && exec postgres'"
+
+  etl_scheduler:
+    build: .
+    command: uv run python scheduler.py
+    restart: always
+    depends_on:
+      transactional_db:
+        condition: service_healthy
+      analytical_db:
+        condition: service_started
+    environment:
+      DB_URL: postgresql://postgres:postgres@transactional_db:5432/appdb_transactional
+      DB2_URL: postgresql://postgres:postgres@analytical_db:5432/appdb_analytical
+      TZ: Asia/Manila 
+    volumes:
+      - .:/app
+      - /app/.venv
 
 volumes:
   pgdata_transactional:
