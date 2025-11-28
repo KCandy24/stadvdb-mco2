@@ -3,7 +3,6 @@ CREATE OR REPLACE PROCEDURE transactional.batch_create_reservation(
     p_run_id INT,
     p_seat_ids INT[]
 )
-LANGUAGE plpgsql
 AS $$
 BEGIN
     INSERT INTO transactional.reservation (user_id, run_id, seat_id)
