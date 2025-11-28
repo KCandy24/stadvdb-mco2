@@ -1,5 +1,4 @@
-DROP PROCEDURE IF EXISTS transactional.batch_create_reservation (INT, INT, INT[]);
-
+DROP PROCEDURE IF EXISTS transactional.batch_create_reservation;
 DROP FUNCTION IF EXISTS transactional.read_reservations_of_user (integer);
 
 -- ! DON'T TOUCH - Roemer
@@ -18,7 +17,7 @@ BEGIN
     FROM unnest(p_seat_ids) AS s
     ORDER BY s ASC;
 END;
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
 -- ! End of DON'T TOUCH
 
 CREATE OR REPLACE FUNCTION transactional.read_reservations_of_user (p_user_id integer)
@@ -29,8 +28,7 @@ RETURNS TABLE (
     seat int,
     period_start timestamp,
     period_end timestamp
-) 
-LANGUAGE plpgsql
+)
 AS $$
 BEGIN
     RETURN QUERY
@@ -49,4 +47,4 @@ BEGIN
     WHERE r.user_id = p_user_id
     ORDER BY r.seat_id;
 END;
-$$;
+$$ LANGUAGE plpgsql;
