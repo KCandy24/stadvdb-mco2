@@ -2,6 +2,8 @@ DROP PROCEDURE IF EXISTS transactional.batch_create_reservation (INT, INT, INT[]
 
 DROP FUNCTION IF EXISTS transactional.read_reservations_of_user (integer);
 
+DROP FUNCTION IF EXISTS transactional.seats_taken_for_run(integer, integer[]);
+
 -- ! DON'T TOUCH - Roemer
 CREATE OR REPLACE PROCEDURE transactional.batch_create_reservation(
     p_user_id INT,
@@ -49,4 +51,24 @@ BEGIN
     WHERE r.user_id = p_user_id
     ORDER BY r.seat_id;
 END;
+$$;
+
+
+CREATE OR REPLACE FUNCTION transactional.seats_taken_for_run(
+    p_run_id integer,
+    p_seat_ids integer[]
+)
+RETURNS TABLE (
+    seat_id integer,
+    taken boolean
+)
+LANGUAGE sql
+AS $$
+    SELECT s AS seat_id,
+           EXISTS (
+             SELECT 1
+             FROM transactional.reservation r
+             WHERE r.run_id = p_run_id AND r.seat_id = s
+           ) AS taken
+    FROM unnest(p_seat_ids) AS s;
 $$;

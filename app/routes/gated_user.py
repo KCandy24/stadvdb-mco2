@@ -3,6 +3,8 @@ These routes are inaccessible when the user isn't logged in.
 """
 
 from flask import Blueprint, redirect, render_template, request, session
+from sqlalchemy import Row, Sequence
+from typing import Any
 
 from app.lib.sql_controller import controller_transactional
 
@@ -13,6 +15,12 @@ bp = Blueprint("gated_user", __name__)
 def check_authentication():
     if "name" not in session.keys():
         return redirect("/login?error=You need to be logged in to access that page.")
+
+
+def check_if_reserved(seat_ids: int, run_id: int) -> Sequence[Row[Any]]:
+    query = "SELECT seat_id, taken FROM transactional.seats_taken_for_run(:run, :seats)"
+    data = {"run": run_id, "seats": seat_ids}
+    return controller_transactional.execute_sql_read(query, data)
 
 
 @bp.get("/dashboard")
@@ -47,14 +55,20 @@ def reserve_page():
 
     layout = [[0 for _ in range(max_col + 1)] for _ in range(max_row + 1)]
     seat_ids = [[0 for _ in range(max_col + 1)] for _ in range(max_row + 1)]
-
     i = 1
     for row in range(1, max_row + 1):
         for col in range(1, max_col + 1):
             if (row, col) in rows_cols:
-                layout[row][col] = rows_cols_prices_ids[i - 1][1]
-                seat_ids[row][col] = rows_cols_prices_ids[i - 1][2]
+                price = rows_cols_prices_ids[i - 1][1]
+                seat = rows_cols_prices_ids[i - 1][2]
+                layout[row][col] = price
+                seat_ids[row][col] = seat
             i += 1
+
+    reserved = check_if_reserved(ids, run)
+    reserved = filter(lambda x: x[1], reserved)
+    reserved = map(lambda x: x[0], reserved)
+    reserved = list(reserved)
 
     base_fee = controller_transactional.execute_sql_read(
         "SELECT basefee FROM transactional.read_showing(:showing_id)",
@@ -70,6 +84,7 @@ def reserve_page():
         layout=layout,
         base_fee=base_fee,
         seat_ids=seat_ids,
+        reserved=reserved
     )
 
 
@@ -107,7 +122,7 @@ def reserve_showing():
 @bp.post("/api/unreserve")
 def unreserve_showing():
     reservation = request.form.get("reservation_id")
-    
+
     assert reservation
 
     controller_transactional.delete(
