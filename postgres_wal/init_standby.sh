@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "=== Standby Initialization Script Starting ==="
 
 # Function to perform base backup
