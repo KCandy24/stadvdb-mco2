@@ -79,12 +79,13 @@ def admin_dashboard():
 @bp.get("/crud")
 def admin_crud():
     table_name = request.args.get("table")
+    error = request.args.get("error")
     assert table_name is not None
     assert table_name in controller_transactional.get_tables("transactional")
     columns = controller_transactional.get_columns("transactional", table_name)
     rows = controller_transactional.get_rows("transactional", table_name)
     return render_template(
-        "admin/crud.html", table_name=table_name, columns=columns, rows=rows
+        "admin/crud.html", table_name=table_name, columns=columns, rows=rows, error=error
     )
 
 
