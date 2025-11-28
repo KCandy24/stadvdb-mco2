@@ -86,6 +86,11 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_dim_venue_oid ON analytical.dim_venue(o_se
 CREATE UNIQUE INDEX IF NOT EXISTS idx_dim_time_date ON analytical.dim_time(sale_date);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_fact_sale_oid ON analytical.fact_sale(o_reservation_id);
 
+CREATE INDEX idx_fact_sale_customer_id ON analytical.fact_sale(customer_id);
+CREATE INDEX idx_fact_sale_venue_id ON analytical.fact_sale(venue_id);
+CREATE INDEX idx_fact_sale_show_id ON analytical.fact_sale(show_id);
+CREATE INDEX idx_fact_sale_time_id ON analytical.fact_sale(time_id);
+
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
 
 DROP SERVER IF EXISTS transactional_server CASCADE;
