@@ -1,5 +1,6 @@
 {% extends "layout.html" %} {% block body %}
 <h1>Reserve</h1>
+
 <p>
     You are about to reserve a showing of <em>{{play}}</em> at
     <em>{{theater}}</em>.
@@ -18,16 +19,18 @@
         <div class="seat-row">
             {% set outer_loop = loop %}
             {% for col in row %}
-            {% set row_idx = outer_loop.index0 %}
-            {% set col_idx = loop.index0 %}
-            {% if col %}
-            <button class="seat" data-seat="{{row_idx}}-{{col_idx}}" data-price="{{col}}"
-                data-seat-id="{{seat_ids[row_idx][col_idx]}}">
-                🪑 P{{col}}
-            </button>
-            {% else %}
-            <button disabled class="seat">❌ -------</button>
-            {% endif %}
+                {% set row_idx = outer_loop.index0 %}
+                {% set col_idx = loop.index0 %}
+                {% set seat_id = seat_ids[row_idx][col_idx] %}
+                {% if col %}
+                    <button class="seat" data-seat="{{row_idx}}-{{col_idx}}" data-price="{{col}}"
+                        data-seat-id="{{seat_id}}"
+                        data-is-reserved="{{seat_id in reserved}}" {{"disabled" if seat_id in reserved else ""}}>
+                        🪑 P{{col}}
+                    </button>
+                    {% else %}
+                    <button disabled class="seat">❌ -------</button>
+                    {% endif %}
             {% endfor %}
         </div>
         {% endfor %}

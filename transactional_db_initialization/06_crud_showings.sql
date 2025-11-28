@@ -138,3 +138,4 @@ BEGIN
     DELETE FROM transactional.showing WHERE showing_id = in_showing_id;
 END;
 $$;
+
