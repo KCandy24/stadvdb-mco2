@@ -50,3 +50,29 @@ def delete_route():
     }
     controller_transactional.delete("transactional", table, data)
     return redirect(request.referrer)
+
+
+@bp.post("/make-seat")
+def make_seat_route():
+    ERROR_SEAT_PLAN_EXISTS = "Seat plan already exists"
+    theater_id = request.form.get("theater_id")
+    rows = request.form.get("rows")
+    columns = request.form.get("columns")
+    default_price = request.form.get("default_price")
+
+    query = (
+        "CALL transactional.batch_create_seat(:theater, :rows, :columns, :default_price)"
+    )
+    data = {
+        "theater": theater_id,
+        "rows": rows,
+        "columns": columns,
+        "default_price": default_price,
+    }
+
+    try:
+        controller_transactional.execute_sql_write(query, data)
+    except Exception:
+        return redirect(f"/admin/crud?table=theater&error={ERROR_SEAT_PLAN_EXISTS}")
+
+    return redirect("/admin/crud?table=theater")

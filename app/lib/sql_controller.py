@@ -142,7 +142,7 @@ class __Controller:
             table_schema = :schema_name;
         """
         args = {"schema_name": schema_name}
-        result = controller_transactional.execute_sql_read(query, args)
+        result = self.execute_sql_read(query, args)
         table_names = [row.tuple()[0] for row in result]
         return table_names
 
@@ -156,7 +156,7 @@ class __Controller:
                 table_schema = :table_schema AND table_name = :table;
         """
         columns_query_args = {"table": table_name, "table_schema": schema_name}
-        result = controller_transactional.execute_sql_read(
+        result = self.execute_sql_read(
             columns_query, columns_query_args
         )
         column_names = []
@@ -171,7 +171,7 @@ class __Controller:
         ! e.g. `assert table_name in get_tables("transactional")`
         """
         query = f"SELECT * FROM {schema_name}.{table_name}"
-        result = controller_transactional.execute_sql_read(query)
+        result = self.execute_sql_read(query)
         return result
 
     def read(
