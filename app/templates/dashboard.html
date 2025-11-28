@@ -7,17 +7,19 @@ Current reservations
         <th>Play</th>
         <th>Theater</th>
         <th>Seats</th>
+        <th>Start</th>
+        <th>End</th>
     </tr>
-    {% for reservation in session.reservations %}
+    {% for reservation in reservations %}
     <tr>
-        <td>{{reservation.play}}</td>
-        <td>{{reservation.theater}}</td>
-        <td>{{reservation.seats}}</td>
+        <td>{{reservation.play_name}}</td>
+        <td>{{reservation.theater_name}}</td>
+        <td>{{reservation.seat}}</td>
+        <td>{{reservation.period_start}}</td>
+        <td>{{reservation.period_end}}</td>
         <td>
             <form action="/api/unreserve" method="post">
-                <input type="hidden" name="play" value="{{reservation.play}}">
-                <input type="hidden" name="theater" value="{{reservation.theater}}">
-                <input type="hidden" name="seats" value="{{reservation.seats}}">
+                <input type="hidden" name="reservation_id" value="{{reservation.reservation_id}}">
                 <button type="submit">Unreserve (TODO)</button>
             </form>
         </td>
