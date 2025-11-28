@@ -17,7 +17,14 @@ def check_authentication():
 
 @bp.get("/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
+    query = """
+    SELECT * FROM transactional.read_reservations_of_user(:user_id);
+    """
+    reservations = controller_transactional.execute_sql_read(
+        query, {"user_id": session["id"]}
+    )
+    print(reservations)
+    return render_template("dashboard.html", reservations=reservations)
 
 
 @bp.get("/reserve")
@@ -39,7 +46,7 @@ def reserve_page():
     max_row, max_col = max(rows), max(cols)
 
     layout = [[0 for _ in range(max_col + 1)] for _ in range(max_row + 1)]
-    seat_ids= [[0 for _ in range(max_col + 1)] for _ in range(max_row + 1)]
+    seat_ids = [[0 for _ in range(max_col + 1)] for _ in range(max_row + 1)]
 
     i = 1
     for row in range(1, max_row + 1):
@@ -50,12 +57,19 @@ def reserve_page():
             i += 1
 
     base_fee = controller_transactional.execute_sql_read(
-        "SELECT basefee FROM transactional.read_showing(:showing_id)", {"showing_id": showing}
+        "SELECT basefee FROM transactional.read_showing(:showing_id)",
+        {"showing_id": showing},
     )[0][0]
 
     return render_template(
-        "reserve.html", run=run, showing=showing, play=play, theater=theater, layout=layout, base_fee=base_fee,
-        seat_ids = seat_ids
+        "reserve.html",
+        run=run,
+        showing=showing,
+        play=play,
+        theater=theater,
+        layout=layout,
+        base_fee=base_fee,
+        seat_ids=seat_ids,
     )
 
 
@@ -92,19 +106,12 @@ def reserve_showing():
 
 @bp.post("/api/unreserve")
 def unreserve_showing():
-    play = request.form.get("play")
-    theater = request.form.get("theater")
-    seats = request.form.get("seats")
+    reservation = request.form.get("reservation_id")
+    
+    assert reservation
 
-    remove_value = {"play": play, "theater": theater, "seats": seats}
+    controller_transactional.delete(
+        "transactional", "reservation", {"reservation_id": reservation}
+    )
 
-    if (
-        "reservations" not in session.keys()
-        or remove_value not in session["reservations"]
-    ):
-        print(remove_value)
-        print(session["reservations"])
-        return redirect("/dashboard?error=Reservation does not exist!")
-    else:
-        session["reservations"].remove(remove_value)
-        return redirect("/dashboard")
+    return redirect("/dashboard")

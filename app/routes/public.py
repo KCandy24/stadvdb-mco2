@@ -6,7 +6,6 @@ from flask import Blueprint, render_template, request, session
 
 from app.db import get_db
 from app.lib.sql_controller import controller_transactional
-from app.routes.dummy_data import PLAYS, SHOWINGS, THEATERS
 
 bp = Blueprint("pages", __name__)
 
