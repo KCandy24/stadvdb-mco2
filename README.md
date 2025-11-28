@@ -14,4 +14,4 @@ Movie seat reservation web application with both transactional and analytical op
 
 * [Video Recording](https://drive.google.com/drive/folders/1THvEczMRzHtnptvpzSpepryxwe4VKlcn?usp=sharing)
 
-* [Miro Board](https://miro.com/app/board/uXjVJzaYJww=/?share_link_id=497166717995)
+* [Load Test Screenshot](https://miro.com/app/board/uXjVJzaYJww=/?share_link_id=497166717995)
