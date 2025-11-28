@@ -49,7 +49,7 @@ BEGIN
     WHERE r.user_id = p_user_id
     ORDER BY r.seat_id;
 END;
-$$;
+$$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION transactional.seats_taken_for_run(
