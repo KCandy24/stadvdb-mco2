@@ -1,0 +1,9 @@
+docker exec -it stadvdb-mco2-transactional_db-1 psql -U postgres -d appdb_transactional -c "CREATE TABLE test_replication (id serial, data text);"
+
+docker exec -it stadvdb-mco2-transactional_db-1 psql -U postgres -d appdb_transactional -c "INSERT INTO test_replication (data) VALUES ('test data');"
+
+docker exec -it stadvdb-mco2-standby_db-1 psql -U postgres -d appdb_transactional -c "SELECT * FROM test_replication;"
+
+docker exec -it stadvdb-mco2-standby_db-1 gosu postgres pg_ctl promote -D /var/lib/postgresql/data
+
+docker exec -it stadvdb-mco2-standby_db-1 psql -U postgres -d appdb_transactional -c "SELECT pg_is_in_recovery();"

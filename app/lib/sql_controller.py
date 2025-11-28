@@ -13,9 +13,18 @@ class __Controller:
         self.port = credentials["PG_PORT"]
         self.dbName = credentials["PG_DB"]
         self.dbUrl = credentials["DB_URL"]
-        self.engine = create_engine(self.dbUrl)
+        self.backupUrl = credentials.get("BACKUP_URL") or None
+        self.dbEngine = create_engine(self.dbUrl)
+        self.backupEngine = create_engine(self.backupUrl) if self.backupUrl else None
+        
+        self.engine = self.dbEngine
         self.sql_path = Path(__file__).parent / "sql"
 
+    def switchEngine(self):
+        if(self.engine == self.dbEngine):
+            self.engine = self.backupEngine
+        else:
+            self.engine = self.dbEngine
 
     def execute_sql_write(self, query: str, data: dict = {}):
         with self.engine.connect() as conn:
@@ -129,6 +138,7 @@ credentials_transactional = {
     "PG_PORT": "5432",
     "PG_DB": "appdb_transactional",
     "DB_URL": os.getenv("DB_URL"),
+    "BACKUP_URL": os.getenv("BACKUP_URL"),
 }
 
 credentials_analytical = {

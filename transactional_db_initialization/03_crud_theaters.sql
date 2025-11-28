@@ -3,6 +3,7 @@
 DROP PROCEDURE IF EXISTS transactional.create_theater(varchar, varchar);
 DROP FUNCTION IF EXISTS transactional.read_theater(integer);
 DROP FUNCTION IF EXISTS transactional.read_theater_by_name(varchar);
+DROP FUNCTION IF EXISTS transactional.read_seats_by_theater(integer);
 DROP PROCEDURE IF EXISTS transactional.update_theater(integer, varchar, varchar);
 DROP PROCEDURE IF EXISTS transactional.delete_theater_by_id(integer);
 DROP PROCEDURE IF EXISTS transactional.delete_theater_by_name(varchar);
@@ -33,6 +34,16 @@ AS $$
 BEGIN
     RETURN QUERY
     SELECT * FROM transactional.theater WHERE theater_name = in_theater_name;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION transactional.read_seats_by_theater(in_theater_id integer)
+RETURNS SETOF transactional.seat
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT * FROM transactional.seat WHERE theater_id = in_theater_id;
 END;
 $$;
 

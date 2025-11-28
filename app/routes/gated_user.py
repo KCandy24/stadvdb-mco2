@@ -2,7 +2,9 @@
 These routes are inaccessible when the user isn't logged in.
 """
 
-from flask import Blueprint, render_template, session, redirect, request
+from flask import Blueprint, redirect, render_template, request, session
+
+from app.lib.sql_controller import controller_transactional
 from app.routes.dummy_data import SEAT_LAYOUTS
 
 bp = Blueprint("gated_user", __name__)
@@ -23,8 +25,22 @@ def dashboard():
 def reserve_page():
     play = request.args.get("play")
     theater = request.args.get("theater")
-    layout = next(filter(lambda layout: layout["theater"] == theater, SEAT_LAYOUTS))
-    layout = layout["layout"].split("\n")
+    # Get seats for this theater id
+    # calling the function `transactional.read_seats_by_theater` seems to
+    # return results in a weird format so I just directly query
+    seats = controller_transactional.execute_sql_read(
+        "SELECT * FROM transactional.seat WHERE theater_id = :theater_id;",
+        {"theater_id": theater},
+    )
+    rows = list(map(lambda entry: entry[2], seats))
+    cols = list(map(lambda entry: entry[3], seats))
+    max_row, max_col = max(rows), max(cols)
+    layout = [
+        [(row, col) in zip(rows, cols) for row in range(max_row)]
+        for col in range(max_col)
+    ]
+    print(f"{layout = }")
+    # Generate matrix -- Place price for each row, col entry
     return render_template("reserve.html", play=play, theater=theater, layout=layout)
 
 
