@@ -2,10 +2,21 @@
 {% block body %}
 <h1>Sign-Up</h1>
 <form action="/api/auth/sign-up" method="post">
+    <label for="last_name">Last name</label>
+    <input type="text" name="last_name">
+    
+    <label for="first_name">First name</label>
+    <input type="text" name="first_name">
+    
+    <label for="last_name">Birthday</label>
+    <input type="date" name="birthday">
+
     <label for="username">Email</label>
     <input type="text" name="username">
-    <label for="password">Password</label>
+
+    <label for="passwrod">Password</label>
     <input type="password" name="password">
+    
     <button type="submit" class="form-page-submit">Submit</button>
 </form>
 {% endblock %}

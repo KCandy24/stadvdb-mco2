@@ -7,15 +7,16 @@ from app.lib.sql_controller import controller_transactional
 
 bp = Blueprint("auth", __name__, url_prefix="/api/auth")
 
+@bp.errorhandler(AssertionError)
+def handle_assertion_error(e):
+    """
+    TODO: Replace error paths with try-catch blocks
+    """
+    return redirect(request.referrer)
 
-@bp.post("/login")
-def login():
-    ERROR_INVALID_USER = "Invalid credentials"
-    email = request.form.get("username")
-    password = request.form.get("password")
 
-    # TODO: Connect to database and check if valid user and password.
-
+def login(email: str, password: str):
+    ERROR_INVALID_USER = "Invalid user credentials"
     query = "SELECT transactional.verify_user(:name, :password) AS v_user_id"
     data = {"name": email, "password": password}
 
@@ -38,15 +39,37 @@ def login():
     return redirect("/dashboard")
 
 
-@bp.post("/sign-up")
-def sign_up():
-    name = request.form.get("username")
+@bp.post("/login")
+def login_route():
+    email = request.form.get("username")
     password = request.form.get("password")
+    assert email
+    assert password
+    return login(email, password)
 
-    # TODO: Actually create an account.
 
-    session["name"] = name
-    return redirect("/dashboard")
+@bp.post("/sign-up")
+def sign_up_route():
+    email = request.form.get("username")
+    password = request.form.get("password")
+    last_name = request.form.get("last_name")
+    first_name = request.form.get("first_name")
+    birthday = request.form.get("birthday")
+
+    assert email
+    assert password
+
+    query = "CALL transactional.create_user(:lastname, :firstname, :birthday, :email, :password)"
+    data = {
+        "lastname": last_name,
+        "firstname": first_name,
+        "birthday": birthday,
+        "email": email,
+        "password": password
+    }
+    controller_transactional.execute_sql_write(query, data)
+
+    return login(email, password)
 
 
 @bp.get("/logout")
