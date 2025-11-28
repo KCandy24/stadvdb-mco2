@@ -43,6 +43,7 @@ $$;
 
 CREATE OR REPLACE FUNCTION transactional.read_showings_by_play(in_play_id integer)
 RETURNS TABLE (
+    showing_id integer,
     play_id integer,
     theater_id integer,
     play_name varchar(50),
@@ -56,6 +57,7 @@ AS $$
 BEGIN
     RETURN QUERY
     SELECT
+        s.showing_id,
         s.play_id,
         s.theater_id,
         p.play_name,
@@ -80,6 +82,7 @@ $$;
 
 CREATE OR REPLACE FUNCTION transactional.read_showings_by_theater(in_theater_id integer)
 RETURNS TABLE (
+    showing_id integer,
     play_id integer,
     theater_id integer,
     play_name varchar(50),
@@ -93,6 +96,7 @@ AS $$
 BEGIN
     RETURN QUERY
     SELECT
+        s.showing_id,
         s.play_id,
         s.theater_id,
         p.play_name,

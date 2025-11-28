@@ -5,7 +5,6 @@ These routes are inaccessible when the user isn't logged in.
 from flask import Blueprint, redirect, render_template, request, session
 
 from app.lib.sql_controller import controller_transactional
-from app.routes.dummy_data import SEAT_LAYOUTS
 
 bp = Blueprint("gated_user", __name__)
 
@@ -18,62 +17,101 @@ def check_authentication():
 
 @bp.get("/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
+    query = """
+    SELECT * FROM transactional.read_reservations_of_user(:user_id);
+    """
+    reservations = controller_transactional.execute_sql_read(
+        query, {"user_id": session["id"]}
+    )
+    print(reservations)
+    return render_template("dashboard.html", reservations=reservations)
 
 
 @bp.get("/reserve")
 def reserve_page():
+    showing = request.args.get("showing")
     play = request.args.get("play")
     theater = request.args.get("theater")
-    # Get seats for this theater id
-    # calling the function `transactional.read_seats_by_theater` seems to
-    # return results in a weird format so I just directly query
+    run = request.args.get("run")
     seats = controller_transactional.execute_sql_read(
-        "SELECT * FROM transactional.seat WHERE theater_id = :theater_id;",
+        "SELECT * FROM transactional.read_seats_by_theater(:theater_id)",
         {"theater_id": theater},
     )
+    ids = list(map(lambda entry: entry[0], seats))
     rows = list(map(lambda entry: entry[2], seats))
     cols = list(map(lambda entry: entry[3], seats))
+    rows_cols = list(zip(rows, cols))
+    prices = list(map(lambda entry: entry[4], seats))
+    rows_cols_prices_ids = list(zip(rows_cols, prices, ids))
     max_row, max_col = max(rows), max(cols)
-    layout = [
-        [(row, col) in zip(rows, cols) for row in range(max_row)]
-        for col in range(max_col)
-    ]
-    print(f"{layout = }")
-    # Generate matrix -- Place price for each row, col entry
-    return render_template("reserve.html", play=play, theater=theater, layout=layout)
+
+    layout = [[0 for _ in range(max_col + 1)] for _ in range(max_row + 1)]
+    seat_ids = [[0 for _ in range(max_col + 1)] for _ in range(max_row + 1)]
+
+    i = 1
+    for row in range(1, max_row + 1):
+        for col in range(1, max_col + 1):
+            if (row, col) in rows_cols:
+                layout[row][col] = rows_cols_prices_ids[i - 1][1]
+                seat_ids[row][col] = rows_cols_prices_ids[i - 1][2]
+            i += 1
+
+    base_fee = controller_transactional.execute_sql_read(
+        "SELECT basefee FROM transactional.read_showing(:showing_id)",
+        {"showing_id": showing},
+    )[0][0]
+
+    return render_template(
+        "reserve.html",
+        run=run,
+        showing=showing,
+        play=play,
+        theater=theater,
+        layout=layout,
+        base_fee=base_fee,
+        seat_ids=seat_ids,
+    )
 
 
 @bp.post("/api/reserve")
 def reserve_showing():
+    run = request.form.get("run")
     play = request.form.get("play")
     theater = request.form.get("theater")
+    run = request.form.get("run")
     seats = request.form.get("seats")
-    reservation = {"play": play, "theater": theater, "seats": seats}
+
+    assert play
+    assert theater
+    assert run
+    assert seats
+
+    reservation = {"play": play, "theater": theater, "run": run, "seats": seats}
+    seat_ids = list(map(int, seats.split(",")))
 
     if "reservations" not in session.keys():
         session.update({"reservations": []})
 
     print(reservation)
+
+    query = "CALL transactional.batch_create_reservation(:user_id, :run_id, :seat_ids)"
+    data = {"user_id": session["id"], "run_id": run, "seat_ids": seat_ids}
+
+    print(f"{query = }\n{data = }")
+    controller_transactional.execute_sql_write(query, data)
+
     session["reservations"].append(reservation)
     return redirect("/dashboard")
 
 
 @bp.post("/api/unreserve")
 def unreserve_showing():
-    play = request.form.get("play")
-    theater = request.form.get("theater")
-    seats = request.form.get("seats")
+    reservation = request.form.get("reservation_id")
+    
+    assert reservation
 
-    remove_value = {"play": play, "theater": theater, "seats": seats}
+    controller_transactional.delete(
+        "transactional", "reservation", {"reservation_id": reservation}
+    )
 
-    if (
-        "reservations" not in session.keys()
-        or remove_value not in session["reservations"]
-    ):
-        print(remove_value)
-        print(session["reservations"])
-        return redirect("/dashboard?error=Reservation does not exist!")
-    else:
-        session["reservations"].remove(remove_value)
-        return redirect("/dashboard")
+    return redirect("/dashboard")

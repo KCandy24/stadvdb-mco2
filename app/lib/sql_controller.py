@@ -164,13 +164,13 @@ class __Controller:
             column_names.append(row.tuple()[0])
         return column_names
 
-    def get_rows(self, table_name: str) -> Sequence[Row[Any]]:
+    def get_rows(self, schema_name: str, table_name: str) -> Sequence[Row[Any]]:
         """
         ! We can't put table names as args, so ensure that `table_name` is really
         ! just the name of a table via assertions
         ! e.g. `assert table_name in get_tables("transactional")`
         """
-        query = f"SELECT * FROM {table_name}"
+        query = f"SELECT * FROM {schema_name}.{table_name}"
         result = controller_transactional.execute_sql_read(query)
         return result
 

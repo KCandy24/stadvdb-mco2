@@ -13,7 +13,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  max-width: 120ch;
+  /* max-width: 120ch; */
   margin: auto;
 }
 
@@ -42,6 +42,10 @@ nav {
         text-align: center;
         text-decoration: none;
         color: black;
+
+        &#admin-dashboard-link {
+          color: red;
+        }
 
         &:hover {
           background-color: aqua;
@@ -125,17 +129,30 @@ div.seat-row {
   flex-direction: row;
 }
 
-.seat {
+button.seat {
+  flex-grow: 1;
   padding: 0.6em;
   margin: 0.2em;
   font-family: monospace;
   background-color: var(--invisible);
 }
 
-.seat:not([data-seat]) {
+button.seat:not([data-seat]) {
   visibility: hidden;
 }
 
-.seat-chosen {
+button.seat-chosen {
   background-color: cornflowerblue;
+}
+
+.scroll {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  height: 50em;
+  border: solid 1px black;
+}
+
+#total-price {
+  font-weight: bold;
+  font-size: x-large;
 }

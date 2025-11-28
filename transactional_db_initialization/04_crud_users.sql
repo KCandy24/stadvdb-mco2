@@ -1,6 +1,9 @@
 -- Users
 DROP PROCEDURE IF EXISTS transactional.create_user(varchar, varchar, date, varchar, varchar);
 DROP FUNCTION IF EXISTS transactional.read_user(integer);
+
+DROP FUNCTION IF EXISTS transactional.verify_user(varchar, varchar);
+
 DROP FUNCTION IF EXISTS transactional.read_user_by_email(varchar);
 DROP PROCEDURE IF EXISTS transactional.update_user(integer, varchar, varchar, date, varchar, varchar);
 DROP PROCEDURE IF EXISTS transactional.delete_user_by_id(integer);
@@ -21,6 +24,23 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
     RETURN QUERY SELECT * FROM transactional.users WHERE user_id = in_user_id;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION transactional.verify_user(in_email varchar(200), in_password varchar(200))
+RETURNS integer
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_user_id integer;
+BEGIN
+    SELECT user_id
+    INTO v_user_id
+    FROM transactional.users
+    WHERE email = in_email AND password = in_password
+    LIMIT 1;
+
+    RETURN v_user_id; -- returns NULL if no match
 END;
 $$;
 

@@ -20,7 +20,22 @@ VALUES
 ('Ivanov', 'Dmitry', '1983-09-25', 'd.ivanov@post.ru', 'password'),
 ('Dubois', 'Marie', '1998-03-10', 'marie.dubois@paris.fr', 'password'),
 ('Tanaka', 'Kenji', '1975-07-07', 'kenji.t@nippon.jp', 'password'),
-('Silva', 'Ana', '2001-01-15', 'ana.silva@br-mail.com', 'password');
+('Silva', 'Ana', '2001-01-15', 'ana.silva@br-mail.com', 'password'),
+('Kim', 'Min-ji', '1996-05-21', 'minji.kim@seoul.kr', 'password'),
+('Muller', 'Hans', '1980-02-14', 'hans.muller@berlin.de', 'password'),
+('Rossi', 'Giulia', '1993-11-09', 'g.rossi@milano.it', 'password'),
+('Santos', 'Maria', '1988-07-30', 'maria.santos@lisboa.pt', 'password'),
+('Popov', 'Alexei', '1991-04-05', 'alexei.popov@moscow.ru', 'password'),
+('Oconnell', 'Liam', '1994-09-12', 'liam.oconnell@dublin.ie', 'password'),
+('Andersson', 'Sven', '1982-12-01', 'sven.andersson@stockholm.se', 'password'),
+('Wang', 'Li', '1997-08-19', 'wang.li@beijing.cn', 'password'),
+('Kowalski', 'Jakub', '1986-03-27', 'j.kowalski@warsaw.pl', 'password'),
+('Papadopoulos', 'Nikos', '1990-10-15', 'n.papadopoulos@athens.gr', 'password'),
+('Jensen', 'Lars', '1979-06-22', 'lars.jensen@copenhagen.dk', 'password'),
+('Singh', 'Aarav', '1995-01-08', 'aarav.singh@delhi.in', 'password'),
+('Bernard', 'Lucas', '1987-05-14', 'lucas.bernard@lyon.fr', 'password'),
+('Ahmed', 'Omar', '1992-09-03', 'omar.ahmed@cairo.eg', 'password'),
+('Yamamoto', 'Yuki', '1999-02-28', 'yuki.yamamoto@tokyo.jp', 'password');
 
 -- PLAYS
 
