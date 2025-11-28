@@ -1,4 +1,4 @@
-DROP PROCEDURE IF EXISTS transactional.batch_create_reservation (INT, INT, INT);
+DROP PROCEDURE IF EXISTS transactional.batch_create_reservation (INT, INT, INT[]);
 
 DROP FUNCTION IF EXISTS transactional.read_reservations_of_user (integer);
 
